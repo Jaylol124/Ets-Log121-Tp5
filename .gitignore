@@ -1,38 +1,87 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
-
-### Eclipse ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-### Mac OS ###
+# --- OS cruft ---
 .DS_Store
+Thumbs.db
+
+# --- Java / JVM ---
+*.class
+*.log
+hs_err_pid*
+replay_pid*
+*.hprof
+
+# --- Maven ---
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+.buildnumber
+
+# Keep Maven wrapper (good for CI + consistent builds)
+!/.mvn/wrapper/maven-wrapper.properties
+.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+# --- Gradle ---
+.gradle/
+build/
+
+# Keep Gradle wrapper (good for CI + consistent builds)
+!gradle/wrapper/gradle-wrapper.properties
+gradle/wrapper/gradle-wrapper.jar
+gradlew
+gradlew.bat
+
+# --- IntelliJ IDEA ---
+# Usually safe to ignore all of .idea and .iml
+.idea/
+*.iml
+out/
+
+# If your team wants shared code style/inspections, unignore specific files:
+# !.idea/codeStyles/
+# !.idea/inspectionProfiles/
+# !.idea/.name
+
+# --- VS Code ---
+.vscode/
+# If you want to share VS Code tasks/launch for debugging JavaFX, keep only these:
+# !.vscode/extensions.json
+# !.vscode/settings.json
+# !.vscode/launch.json
+# !.vscode/tasks.json
+
+# --- Eclipse (if someone uses it) ---
+.project
+.classpath
+.settings/
+bin/
+
+# --- JavaFX packaging (jlink/jpackage) ---
+build/image/
+build/installer/
+build/jpackage/
+target/*-jlink/
+target/*-jpackage/
+target/jlink/
+target/jpackage/
+
+# Generic distribution artifacts
+dist/
+release/
+*.dmg
+*.pkg
+*.msi
+*.exe
+*.deb
+*.rpm
+*.AppImage
+*.zip
+
+# --- Local SDKs / vendor libs (use Maven/Gradle deps instead) ---
+lib/
+libs/
+javafx-sdk*/
