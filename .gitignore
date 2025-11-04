@@ -36,31 +36,38 @@ gradlew
 gradlew.bat
 
 # --- IntelliJ IDEA ---
-# Usually safe to ignore all of .idea and .iml
 .idea/
 *.iml
 out/
 
-# If your team wants shared code style/inspections, unignore specific files:
+# Optional shared IDEA settings
 # !.idea/codeStyles/
 # !.idea/inspectionProfiles/
 # !.idea/.name
 
 # --- VS Code ---
 .vscode/
-# If you want to share VS Code tasks/launch for debugging JavaFX, keep only these:
+# Optional shared VSCode config:
 # !.vscode/extensions.json
 # !.vscode/settings.json
 # !.vscode/launch.json
 # !.vscode/tasks.json
 
-# --- Eclipse (if someone uses it) ---
+# --- Eclipse ---
 .project
 .classpath
 .settings/
 bin/
 
-# --- JavaFX packaging (jlink/jpackage) ---
+# --- NetBeans ---
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# --- JavaFX packaging ---
 build/image/
 build/installer/
 build/jpackage/
@@ -69,7 +76,7 @@ target/*-jpackage/
 target/jlink/
 target/jpackage/
 
-# Generic distribution artifacts
+# --- Generic distribution artifacts ---
 dist/
 release/
 *.dmg
@@ -81,7 +88,16 @@ release/
 *.AppImage
 *.zip
 
-# --- Local SDKs / vendor libs (use Maven/Gradle deps instead) ---
+# --- Local SDKs / vendor libs ---
 lib/
 libs/
 javafx-sdk*/
+
+# --- Other IDEs / Tools ---
+.cproject
+.csettings
+.cache/
+.idea_modules/
+*.swp
+*.swo
+*.bak
