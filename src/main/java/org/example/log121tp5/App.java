@@ -9,15 +9,16 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import org.example.log121tp5.Modele.AffichageModele;
 
 public class App extends Application {
 
     private Controleur controleur = new Controleur();
     @Override
-    public void start(Stage primaryStage) {
-
+    public void start(Stage stage) {
+        
+        
         // Lier le controleur au different module
         AffichageModele affichageModele = new AffichageModele();
         controleur.setAffichageModele(affichageModele);
@@ -33,10 +34,17 @@ public class App extends Application {
         grid.setHgap(8);
         grid.setVgap(8);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        Scene scene = new Scene(grid, 400, 400);
-        primaryStage.setScene(scene);
+        grid.setStyle("--fx-background-color: #812323ff;");
+        
+    
+        stage.setTitle("Image avec Perpectives");
 
-        primaryStage.show();
+        Scene scene = new Scene(affichageVue, 800, 400);
+        scene.setFill(Paint.valueOf("#010461ff"));
+        stage.setScene(scene);
+
+
+        stage.show();
     }
 
     public static void main(String[] args) {
