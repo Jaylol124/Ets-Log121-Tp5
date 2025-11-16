@@ -16,9 +16,9 @@ public class ControlleurCommande {
     public ControlleurCommande(AffichageVue affichageVue,
                                AffichageModele affichageModele,
                                BarreNavVue barreNavVue) {
-        this.affichageVue = affichageVue;
+        this.affichageVue    = affichageVue;
         this.affichageModele = affichageModele;
-        this.barreNavVue = barreNavVue;
+        this.barreNavVue     = barreNavVue;
 
     }
     

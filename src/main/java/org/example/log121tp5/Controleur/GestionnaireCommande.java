@@ -10,9 +10,8 @@ public class GestionnaireCommande {
 
     // creer une instance par classe
     public static GestionnaireCommande getInstance(){
-       
         if(instance == null) instance = new GestionnaireCommande();
-        
+
         return instance;
     }
 
