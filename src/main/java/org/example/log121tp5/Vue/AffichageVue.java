@@ -4,10 +4,15 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import org.example.log121tp5.Controleur.Controleur;
+import org.example.log121tp5.Modele.Conteneur1;
+import org.example.log121tp5.Modele.Conteneur2;
+import org.example.log121tp5.Modele.Conteneur3;
+import org.example.log121tp5.Modele.ConteneurModele;
 
 public class AffichageVue extends BorderPane {
 
     private Controleur controleur;
+
 
 
     public AffichageVue() {
@@ -19,9 +24,17 @@ public class AffichageVue extends BorderPane {
         conteneurGlobal.setSpacing(0);
         conteneurGlobal.setPadding(Insets.EMPTY);
 
-        ConteneurVue cont1 = new ConteneurVue("gray");
-        ConteneurVue cont2 = new ConteneurVue("#1e90ff");
-        ConteneurVue cont3 = new ConteneurVue("#1e90ff");
+
+
+        ConteneurModele cont1 = controleur.getConteneur1().getCont();
+        ConteneurModele cont2 = controleur.getConteneur2().getCont();
+        ConteneurModele cont3 = controleur.getConteneur3().getCont();
+
+//        ConteneurModele cont1 = new ConteneurModele("gray");
+//        ConteneurModele cont2 = new ConteneurModele("#1e90ff");
+//        ConteneurModele cont3 = new ConteneurModele("#1e90ff");
+
+
 
         // image par default pour tester. on va changer les prochains conteneur avec observer dans le futur
         cont1.setImage("/images/blackrizz.png");
