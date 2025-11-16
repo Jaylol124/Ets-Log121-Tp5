@@ -9,7 +9,6 @@ public class AffichageVue extends BorderPane {
 
     private Controleur controleur;
 
-
     public AffichageVue() {
         // on met la nav bar toute en haut
         setTop(new BarreNavVue());

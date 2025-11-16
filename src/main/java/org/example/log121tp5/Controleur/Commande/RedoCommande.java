@@ -1,11 +1,11 @@
-package org.example.log121tp5.Commande;
+package org.example.log121tp5.Controleur.Commande;
 
 import org.example.log121tp5.Controleur.Controleur;
 
-public class ChangePerspCommande implements Commande {
+public class RedoCommande implements Commande {
     private Controleur controleur;
 
-    public ChangePerspCommande(Controleur controleur) {
+    public RedoCommande(Controleur controleur) {
         this.controleur = controleur;
     }
 

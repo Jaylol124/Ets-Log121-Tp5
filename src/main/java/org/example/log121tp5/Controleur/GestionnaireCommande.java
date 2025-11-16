@@ -1,8 +1,8 @@
-package org.example.log121tp5.Modele;
+package org.example.log121tp5.Controleur;
 
 import java.util.ArrayList;
 
-import org.example.log121tp5.Commande.Commande;
+import org.example.log121tp5.Controleur.Commande.Commande;
 // gestionnaire de commande pour stocker les commandes executees
 public class GestionnaireCommande {
     private static  GestionnaireCommande instance;

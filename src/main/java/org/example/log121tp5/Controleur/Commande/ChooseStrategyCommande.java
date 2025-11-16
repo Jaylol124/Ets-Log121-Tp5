@@ -1,16 +1,16 @@
-package org.example.log121tp5.Commande;
+package org.example.log121tp5.Controleur.Commande;
 
 import org.example.log121tp5.Controleur.Controleur;
 
-public class SavePerspCommande implements Commande {
+public class ChooseStrategyCommande implements Commande {
     private Controleur controleur;
 
-    public SavePerspCommande(Controleur controleur) {
+    public ChooseStrategyCommande(Controleur controleur) {
         this.controleur = controleur;
     }
+
     @Override
     public void execute() {
-
     }
 
 }

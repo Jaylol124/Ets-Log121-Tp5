@@ -1,4 +1,4 @@
-package org.example.log121tp5.Commande;
+package org.example.log121tp5.Controleur.Commande;
 
 import org.example.log121tp5.Controleur.Controleur;
 

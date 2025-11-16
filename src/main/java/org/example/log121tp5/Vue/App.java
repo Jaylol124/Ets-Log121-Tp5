@@ -17,11 +17,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         
-        
         // Lier le controleur au different module
         AffichageModele affichageModele = new AffichageModele();
         controleur.setAffichageModele(affichageModele);
-        affichageModele.setControleur(controleur);
+
         /////
         AffichageVue affichageVue = new AffichageVue();
         controleur.setAffichageVue(affichageVue);
@@ -42,12 +41,9 @@ public class App extends Application {
         scene.setFill(Paint.valueOf("#010461ff"));
         stage.setScene(scene);
 
-
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }
-
 }
