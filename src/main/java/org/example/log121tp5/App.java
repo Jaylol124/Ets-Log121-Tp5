@@ -27,10 +27,6 @@ public class App extends Application {
         controleur.setAffichageModele(affichageModele);
         affichageModele.setControleur(controleur);
         /////
-        AffichageVue affichageVue = new AffichageVue();
-        controleur.setAffichageVue(affichageVue);
-        affichageVue.setControleur(controleur);
-        /////
         Conteneur1 conteneur1 = new Conteneur1();
         controleur.setConteneur1(conteneur1);
 
@@ -43,7 +39,11 @@ public class App extends Application {
         // pour patron observer
         conteneur1.attach(conteneur2);
         conteneur1.attach(conteneur3);
-        //////
+        ///
+        AffichageVue affichageVue = new AffichageVue(controleur);
+        controleur.setAffichageVue(affichageVue);
+        affichageVue.setControleur(controleur);
+        /////
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);

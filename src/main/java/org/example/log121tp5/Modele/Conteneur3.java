@@ -6,7 +6,8 @@ public class Conteneur3 implements Observer{
     public void update(Subject subject) {
         if(subject instanceof Conteneur1)
         {
-            cont.setImage(((Conteneur1) subject).getImageView());
+            //cont.setImage(((Conteneur1) subject).getImageView());
+            cont.setImage(((Conteneur1) subject).getImageView().getImage());
         }
     }
 

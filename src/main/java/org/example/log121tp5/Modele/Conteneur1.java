@@ -12,9 +12,10 @@ public class Conteneur1 extends Subject{
         return imageView;
     }
 
-    public void changementImage(String imagePath)
+    public void changementImage()
     {
         cont.setImage("/images/blackrizz.png");
+        notifyObservers();
     }
 
     public ConteneurModele getCont() {

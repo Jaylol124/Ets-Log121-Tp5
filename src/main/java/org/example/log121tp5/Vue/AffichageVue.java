@@ -14,8 +14,11 @@ public class AffichageVue extends BorderPane {
     private Controleur controleur;
 
 
+    public void setControleur(Controleur controleur) {
+        this.controleur = controleur;
+    }
 
-    public AffichageVue() {
+    public AffichageVue(Controleur controleur) {
         // on met la nav bar toute en haut
         setTop(new BarreNavVue());
 
@@ -37,7 +40,8 @@ public class AffichageVue extends BorderPane {
 
 
         // image par default pour tester. on va changer les prochains conteneur avec observer dans le futur
-        cont1.setImage("/images/blackrizz.png");
+        //cont1.setImage("/images/blackrizz.png");
+        controleur.getConteneur1().changementImage();
 
         conteneurGlobal.getChildren().addAll(cont1, cont2, cont3);
 
@@ -57,8 +61,4 @@ public class AffichageVue extends BorderPane {
         cont3.prefHeightProperty().bind(center.heightProperty());
     }
 
-
-    public void setControleur(Controleur controleur) {
-        this.controleur = controleur;
-    }
 }
