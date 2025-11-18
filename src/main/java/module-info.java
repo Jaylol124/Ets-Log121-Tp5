@@ -1,6 +1,9 @@
 module org.example.log121tp5 {
-    requires javafx.controls;
-    requires javafx.graphics;
+    requires transitive javafx.controls;
+    requires transitive javafx.graphics;
 
-    opens org.example.log121tp5.Vue to javafx.graphics;
+    exports org.example.log121tp5;
+    exports org.example.log121tp5.Controleur;
+    exports org.example.log121tp5.Modele;
+    exports org.example.log121tp5.Vue;
 }

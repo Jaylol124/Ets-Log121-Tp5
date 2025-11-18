@@ -1,6 +1,10 @@
 package org.example.log121tp5;
 
 import org.example.log121tp5.Controleur.Controleur;
+import org.example.log121tp5.Modele.Conteneur1;
+import org.example.log121tp5.Modele.Conteneur2;
+import org.example.log121tp5.Modele.Conteneur3;
+import org.example.log121tp5.Vue.AffichageVue;
 import org.example.log121tp5.Modele.AffichageModele;
 import org.example.log121tp5.Vue.AffichageVue;
 
@@ -23,7 +27,20 @@ public class App extends Application {
         controleur.setAffichageModele(affichageModele);
 
         /////
-        AffichageVue affichageVue = new AffichageVue();
+        Conteneur1 conteneur1 = new Conteneur1();
+        controleur.setConteneur1(conteneur1);
+
+        Conteneur2 conteneur2 = new Conteneur2();
+        controleur.setConteneur2(conteneur2);
+
+        Conteneur3 conteneur3 = new Conteneur3();
+        controleur.setConteneur3(conteneur3);
+
+        // pour patron observer
+        conteneur1.attach(conteneur2);
+        conteneur1.attach(conteneur3);
+        ///
+        AffichageVue affichageVue = new AffichageVue(controleur);
         controleur.setAffichageVue(affichageVue);
         affichageVue.setControleur(controleur);
         /////
