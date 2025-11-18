@@ -4,6 +4,8 @@ package org.example.log121tp5.Controleur;
 //import com.example.Vue.AffichageVue;
 
 import org.example.log121tp5.Modele.AffichageModele;
+import org.example.log121tp5.Modele.Commande.ChangePerspCommande;
+import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
 import org.example.log121tp5.Vue.AffichageVue;
 
 public class Controleur {
@@ -25,5 +27,9 @@ public class Controleur {
 
     public void setAffichageModele(AffichageModele affichageModele) {
         this.affichageModele = affichageModele;
+    }
+
+    public ChangeImageCommande getChangeImageCommande() {
+        return new ChangeImageCommande(this);
     }
 }

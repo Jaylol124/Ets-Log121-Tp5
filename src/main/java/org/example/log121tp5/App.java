@@ -1,7 +1,8 @@
-package org.example.log121tp5.Vue;
+package org.example.log121tp5;
 
 import org.example.log121tp5.Controleur.Controleur;
 import org.example.log121tp5.Modele.AffichageModele;
+import org.example.log121tp5.Vue.AffichageVue;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
