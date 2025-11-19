@@ -1,16 +1,19 @@
-package org.example.log121tp5.Modele;
+package org.example.log121tp5.Modele.Conteneur;
 
-public class Conteneur2 implements Observer{
+import org.example.log121tp5.Modele.Observer;
+import org.example.log121tp5.Modele.Subject;
+
+public class ConteneurObserver implements Observer {
 
     ConteneurModele cont = new ConteneurModele("#1e90ff");
 
     @Override
     public void update(Subject subject) {
-        if(subject instanceof Conteneur1)
+        if(subject instanceof ConteneurSubject)
         {
             //cont.setImage(((Conteneur1) subject).getImageView());
             //cont.setImage("/images/blackrizz.png");
-            cont.setImage(((Conteneur1) subject).getImageView().getImage());
+            cont.setImage(((ConteneurSubject) subject).getImageView().getImage());
         }
     }
     public ConteneurModele getCont() {

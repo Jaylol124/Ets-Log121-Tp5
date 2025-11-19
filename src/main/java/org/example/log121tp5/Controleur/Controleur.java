@@ -4,9 +4,8 @@ package org.example.log121tp5.Controleur;
 //import com.example.Vue.AffichageVue;
 
 import org.example.log121tp5.Modele.AffichageModele;
-import org.example.log121tp5.Modele.Conteneur1;
-import org.example.log121tp5.Modele.Conteneur2;
-import org.example.log121tp5.Modele.Conteneur3;
+import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
+import org.example.log121tp5.Modele.Conteneur.ConteneurObserver;
 import org.example.log121tp5.Vue.AffichageVue;
 
 public class Controleur {
@@ -14,9 +13,9 @@ public class Controleur {
     private AffichageVue affichageVue;
     private AffichageModele affichageModele;
 
-    private Conteneur1 conteneur1;
-    private Conteneur2 conteneur2;
-    private Conteneur3 conteneur3;
+    private ConteneurSubject conteneurSubject;
+    private ConteneurObserver conteneurObserver1;
+    private ConteneurObserver conteneurObserver2;
 
     public AffichageVue getAffichageVue() {
         return affichageVue;
@@ -34,27 +33,35 @@ public class Controleur {
         this.affichageModele = affichageModele;
     }
 
-    public Conteneur1 getConteneur1() {
-        return conteneur1;
+    public ConteneurSubject getConteneur1() {
+        return conteneurSubject;
     }
 
-    public Conteneur2 getConteneur2() {
-        return conteneur2;
+    public void setConteneur1(ConteneurSubject conteneurSubject) {
+        this.conteneurSubject = conteneurSubject;
     }
 
-    public Conteneur3 getConteneur3() {
-        return conteneur3;
+    public ConteneurSubject getConteneurSubject() {
+        return conteneurSubject;
     }
 
-    public void setConteneur1(Conteneur1 conteneur1) {
-        this.conteneur1 = conteneur1;
+    public void setConteneurSubject(ConteneurSubject conteneurSubject) {
+        this.conteneurSubject = conteneurSubject;
     }
 
-    public void setConteneur2(Conteneur2 conteneur2) {
-        this.conteneur2 = conteneur2;
+    public ConteneurObserver getConteneurObserver1() {
+        return conteneurObserver1;
     }
 
-    public void setConteneur3(Conteneur3 conteneur3) {
-        this.conteneur3 = conteneur3;
+    public void setConteneurObserver1(ConteneurObserver conteneurObserver1) {
+        this.conteneurObserver1 = conteneurObserver1;
+    }
+
+    public ConteneurObserver getConteneurObserver2() {
+        return conteneurObserver2;
+    }
+
+    public void setConteneurObserver2(ConteneurObserver conteneurObserver2) {
+        this.conteneurObserver2 = conteneurObserver2;
     }
 }

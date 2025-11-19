@@ -1,4 +1,4 @@
-package org.example.log121tp5.Modele;
+package org.example.log121tp5.Modele.Conteneur;
 
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Pos;
