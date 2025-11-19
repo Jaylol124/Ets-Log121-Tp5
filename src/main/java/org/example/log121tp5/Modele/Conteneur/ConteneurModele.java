@@ -9,6 +9,8 @@ import javafx.scene.layout.StackPane;
 public class ConteneurModele extends StackPane {
     private ImageView imageView = new ImageView();
 
+    private double offsetX;
+    private double offsetY;
     public ConteneurModele(String couleur) {
         setStyle(
                 "-fx-background-color: rgba(255,255,255,0.35);" +
@@ -29,7 +31,17 @@ public class ConteneurModele extends StackPane {
         imageView.fitWidthProperty().bind(
                 Bindings.min(widthProperty(), heightProperty()).multiply(0.9)
         );
+        // Quand on clique : mémorisation du point de départ
+        imageView.setOnMousePressed(event -> {
+            offsetX = event.getSceneX() - imageView.getLayoutX();
+            offsetY = event.getSceneY() - imageView.getLayoutY();
+        });
 
+        // Quand on déplace : mise à jour de position
+        imageView.setOnMouseDragged(event -> {
+            imageView.setLayoutX(event.getSceneX() - offsetX);
+            imageView.setLayoutY(event.getSceneY() - offsetY);
+        });
         getChildren().add(imageView);
     }
 
