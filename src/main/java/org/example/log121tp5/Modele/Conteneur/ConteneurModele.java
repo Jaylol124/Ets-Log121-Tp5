@@ -40,7 +40,7 @@ public class ConteneurModele extends StackPane {
     }
     //changer l'image avec l'url du fichier
     public void setImageDepuisUrlFichier(String Url) {
-        Image img = new Image(Url);
+        Image img = new Image("file:" + Url);
         imageView.setImage(img);
     }
     //getteur de l'imageview

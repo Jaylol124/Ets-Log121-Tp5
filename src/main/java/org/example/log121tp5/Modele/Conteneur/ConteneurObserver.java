@@ -9,8 +9,7 @@ public class ConteneurObserver implements Observer {
 
     @Override
     public void update(Subject subject) {
-        if(subject instanceof ConteneurSubject)
-        {
+        if(subject instanceof ConteneurSubject){
             cont.setImage(((ConteneurSubject) subject).getImageView().getImage());
         }
     }

@@ -13,9 +13,8 @@ public class ConteneurSubject extends Subject {
         return imageView;
     }
 
-    public void changementImage(String cheminImage)
-    {
-        cont.setImage(cheminImage);
+    public void changementImage(String cheminImage){
+        cont.setImageDepuisUrlFichier(cheminImage);
         notifyObservers();
     }
 

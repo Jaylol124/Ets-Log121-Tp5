@@ -26,7 +26,7 @@ public class App extends Application {
 
         /////
         ConteneurSubject conteneurSubject = new ConteneurSubject();
-        controleur.setConteneur1(conteneurSubject);
+        controleur.setConteneur(conteneurSubject);
 
         ConteneurObserver conteneurObserver1 = new ConteneurObserver();
         controleur.setConteneurObserver1(conteneurObserver1);

@@ -9,7 +9,6 @@ public class SavePerspCommande implements Commande {
     }
 
     @Override
-    public void execute() {
-    }
+    public void execute() {}
 
 }

@@ -1,6 +1,7 @@
 package org.example.log121tp5.Modele.Commande;
 
 import org.example.log121tp5.Controleur.Controleur;
+import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
@@ -24,9 +25,12 @@ public class ChangeImageCommande implements Commande {
         ); 
         File selectedFile = fileChooser.showOpenDialog(null);
 
+        ConteneurSubject conteneurSubject = controleur.getConteneur();
+        
+
         if (selectedFile != null){
             String path = selectedFile.getPath();
-            controleur.getConteneur1().changementImage(path);
+            conteneurSubject.changementImage(path);
         }
         else 
             System.out.println("Aucun fichier sélectionné");

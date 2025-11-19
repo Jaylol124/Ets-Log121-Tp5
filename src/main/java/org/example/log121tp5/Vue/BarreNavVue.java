@@ -17,9 +17,9 @@ public class BarreNavVue extends MenuBar{
     private Menu editionMenu;
     private Menu pressePapier;
 
-    private Controleur controleur = new Controleur();
+    private Controleur controleur;
 
-    public BarreNavVue() {
+    public BarreNavVue(Controleur controleur) {
         this.setWidth(getLayoutX());
 
         this.fichierMenu = new Menu("Fichier");
@@ -28,6 +28,8 @@ public class BarreNavVue extends MenuBar{
         bindMenuItems();
         
         this.getMenus().addAll(fichierMenu, editionMenu, pressePapier);
+
+        this.controleur = controleur;
     }
 
     /*

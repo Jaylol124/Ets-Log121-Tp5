@@ -1,9 +1,6 @@
 package org.example.log121tp5.Controleur;
 
 import org.example.log121tp5.Modele.AffichageModele;
-import org.example.log121tp5.Modele.Conteneur1;
-import org.example.log121tp5.Modele.Conteneur2;
-import org.example.log121tp5.Modele.Conteneur3;
 import org.example.log121tp5.Modele.GestionnaireCommande;
 import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
 import org.example.log121tp5.Modele.Commande.Commande;
@@ -15,10 +12,6 @@ public class Controleur {
 
     private AffichageVue affichageVue;
     private AffichageModele affichageModele;
-
-    private Conteneur1 conteneur1;
-    private Conteneur2 conteneur2;
-    private Conteneur3 conteneur3;
 
     private GestionnaireCommande gestionnaireCommande = GestionnaireCommande.getInstance();
     private ConteneurSubject conteneurSubject;
@@ -46,11 +39,11 @@ public class Controleur {
         gestionnaireCommande.commandeExecute(commande);
     }
 
-    public ConteneurSubject getConteneur1() {
+    public ConteneurSubject getConteneur() {
         return conteneurSubject;
     }
 
-    public void setConteneur1(ConteneurSubject conteneurSubject) {
+    public void setConteneur(ConteneurSubject conteneurSubject) {
         this.conteneurSubject = conteneurSubject;
     }
 

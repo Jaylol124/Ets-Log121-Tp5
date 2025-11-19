@@ -17,28 +17,17 @@ public class AffichageVue extends BorderPane {
 
     public AffichageVue(Controleur controleur) {
         // on met la nav bar toute en haut
-        setTop(new BarreNavVue());
+        setTop(new BarreNavVue(controleur));
 
         HBox conteneurGlobal = new HBox();
         conteneurGlobal.setAlignment(Pos.CENTER);
         conteneurGlobal.setSpacing(0);
         conteneurGlobal.setPadding(Insets.EMPTY);
 
-
-
-        ConteneurModele cont1 = controleur.getConteneur1().getCont();
+        ConteneurModele cont1 = controleur.getConteneur().getCont();
         ConteneurModele cont2 = controleur.getConteneurObserver1().getCont();
         ConteneurModele cont3 = controleur.getConteneurObserver2().getCont();
 
-//        ConteneurModele cont1 = new ConteneurModele("gray");
-//        ConteneurModele cont2 = new ConteneurModele("#1e90ff");
-//        ConteneurModele cont3 = new ConteneurModele("#1e90ff");
-
-
-
-        // image par default pour tester. on va changer les prochains conteneur avec observer dans le futur
-        //cont1.setImage("/images/blackrizz.png");
-        controleur.getConteneur1().changementImage("/images/blackrizz.png");
 
         conteneurGlobal.getChildren().addAll(cont1, cont2, cont3);
 
