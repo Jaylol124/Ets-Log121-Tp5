@@ -1,8 +1,9 @@
-package org.example.log121tp5.Modele;
+package org.example.log121tp5.Modele.Conteneur;
 
 import javafx.scene.image.ImageView;
+import org.example.log121tp5.Modele.Subject;
 
-public class Conteneur1 extends Subject{
+public class ConteneurSubject extends Subject {
 
     ConteneurModele cont = new ConteneurModele("gray");
 
@@ -12,8 +13,9 @@ public class Conteneur1 extends Subject{
         return imageView;
     }
 
-    public void changementImage(String image) {
-        cont.setImage(image);
+    public void changementImage(String cheminImage)
+    {
+        cont.setImage(cheminImage);
         notifyObservers();
     }
 

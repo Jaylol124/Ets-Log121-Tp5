@@ -1,12 +1,10 @@
 package org.example.log121tp5;
 
 import org.example.log121tp5.Controleur.Controleur;
-import org.example.log121tp5.Modele.Conteneur1;
-import org.example.log121tp5.Modele.Conteneur2;
-import org.example.log121tp5.Modele.Conteneur3;
+import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
+import org.example.log121tp5.Modele.Conteneur.ConteneurObserver;
 import org.example.log121tp5.Vue.AffichageVue;
 import org.example.log121tp5.Modele.AffichageModele;
-import org.example.log121tp5.Vue.AffichageVue;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -27,18 +25,18 @@ public class App extends Application {
         controleur.setAffichageModele(affichageModele);
 
         /////
-        Conteneur1 conteneur1 = new Conteneur1();
-        controleur.setConteneur1(conteneur1);
+        ConteneurSubject conteneurSubject = new ConteneurSubject();
+        controleur.setConteneur1(conteneurSubject);
 
-        Conteneur2 conteneur2 = new Conteneur2();
-        controleur.setConteneur2(conteneur2);
+        ConteneurObserver conteneurObserver1 = new ConteneurObserver();
+        controleur.setConteneurObserver1(conteneurObserver1);
 
-        Conteneur3 conteneur3 = new Conteneur3();
-        controleur.setConteneur3(conteneur3);
+        ConteneurObserver conteneurObserver2 = new ConteneurObserver();
+        controleur.setConteneurObserver2(conteneurObserver2);
 
         // pour patron observer
-        conteneur1.attach(conteneur2);
-        conteneur1.attach(conteneur3);
+        conteneurSubject.attach(conteneurObserver1);
+        conteneurSubject.attach(conteneurObserver2);
         ///
         AffichageVue affichageVue = new AffichageVue(controleur);
         controleur.setAffichageVue(affichageVue);

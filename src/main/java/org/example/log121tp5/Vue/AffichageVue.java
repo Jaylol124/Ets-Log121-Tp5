@@ -4,10 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import org.example.log121tp5.Controleur.Controleur;
-import org.example.log121tp5.Modele.Conteneur1;
-import org.example.log121tp5.Modele.Conteneur2;
-import org.example.log121tp5.Modele.Conteneur3;
-import org.example.log121tp5.Modele.ConteneurModele;
+import org.example.log121tp5.Modele.Conteneur.ConteneurModele;
 
 public class AffichageVue extends BorderPane {
 
@@ -30,8 +27,8 @@ public class AffichageVue extends BorderPane {
 
 
         ConteneurModele cont1 = controleur.getConteneur1().getCont();
-        ConteneurModele cont2 = controleur.getConteneur2().getCont();
-        ConteneurModele cont3 = controleur.getConteneur3().getCont();
+        ConteneurModele cont2 = controleur.getConteneurObserver1().getCont();
+        ConteneurModele cont3 = controleur.getConteneurObserver2().getCont();
 
 //        ConteneurModele cont1 = new ConteneurModele("gray");
 //        ConteneurModele cont2 = new ConteneurModele("#1e90ff");
@@ -41,7 +38,7 @@ public class AffichageVue extends BorderPane {
 
         // image par default pour tester. on va changer les prochains conteneur avec observer dans le futur
         //cont1.setImage("/images/blackrizz.png");
-        //controleur.getConteneur1().changementImage();
+        controleur.getConteneur1().changementImage("/images/blackrizz.png");
 
         conteneurGlobal.getChildren().addAll(cont1, cont2, cont3);
 
