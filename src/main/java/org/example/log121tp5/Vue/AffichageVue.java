@@ -41,7 +41,7 @@ public class AffichageVue extends BorderPane {
 
         // image par default pour tester. on va changer les prochains conteneur avec observer dans le futur
         //cont1.setImage("/images/blackrizz.png");
-        controleur.getConteneur1().changementImage();
+        //controleur.getConteneur1().changementImage();
 
         conteneurGlobal.getChildren().addAll(cont1, cont2, cont3);
 

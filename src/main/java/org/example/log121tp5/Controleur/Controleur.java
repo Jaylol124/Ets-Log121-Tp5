@@ -7,6 +7,9 @@ import org.example.log121tp5.Modele.AffichageModele;
 import org.example.log121tp5.Modele.Conteneur1;
 import org.example.log121tp5.Modele.Conteneur2;
 import org.example.log121tp5.Modele.Conteneur3;
+import org.example.log121tp5.Modele.GestionnaireCommande;
+import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
+import org.example.log121tp5.Modele.Commande.Commande;
 import org.example.log121tp5.Vue.AffichageVue;
 
 public class Controleur {
@@ -17,6 +20,8 @@ public class Controleur {
     private Conteneur1 conteneur1;
     private Conteneur2 conteneur2;
     private Conteneur3 conteneur3;
+
+    private GestionnaireCommande gestionnaireCommande = GestionnaireCommande.getInstance();
 
     public AffichageVue getAffichageVue() {
         return affichageVue;
@@ -32,6 +37,11 @@ public class Controleur {
 
     public void setAffichageModele(AffichageModele affichageModele) {
         this.affichageModele = affichageModele;
+    }
+
+    public void setOnClickListenerChangerImage(){
+        Commande commande = new ChangeImageCommande(this);
+        gestionnaireCommande.commandeExecute(commande);
     }
 
     public Conteneur1 getConteneur1() {

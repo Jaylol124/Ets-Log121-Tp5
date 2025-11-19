@@ -2,6 +2,8 @@ package org.example.log121tp5.Vue;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+
+import org.example.log121tp5.Controleur.Controleur;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -14,6 +16,8 @@ public class BarreNavVue extends MenuBar{
     private Menu fichierMenu;
     private Menu editionMenu;
     private Menu pressePapier;
+
+    private Controleur controleur = new Controleur();
 
     public BarreNavVue() {
         this.setWidth(getLayoutX());
@@ -35,7 +39,10 @@ public class BarreNavVue extends MenuBar{
             creerItemMenu("Sauvegarder Perpective", e -> System.out.println("Sauvegarder Perpectives")),
             creerItemMenu("Changer Perpective", e -> System.out.println("Ouvrir un fichier")),
             new SeparatorMenuItem(),
-            creerItemMenu("Changer Image", e -> System.out.println("Changer l'image affichee")),
+            creerItemMenu("Changer Image", e -> {
+                System.out.println("Changer l'image affichee");
+                controleur.setOnClickListenerChangerImage();
+            }),
             new SeparatorMenuItem(),
             creerItemMenu("Quitter", e -> System.exit(0))
         );

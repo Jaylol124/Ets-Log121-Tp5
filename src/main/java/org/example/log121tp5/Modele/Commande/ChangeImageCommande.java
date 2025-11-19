@@ -2,7 +2,9 @@ package org.example.log121tp5.Modele.Commande;
 
 import org.example.log121tp5.Controleur.Controleur;
 
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
+import java.io.File;
 
 
 public class ChangeImageCommande implements Commande {
@@ -19,7 +21,15 @@ public class ChangeImageCommande implements Commande {
         fileChooser.setTitle("Choisir une image");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.bmp", "*.gif")
-        );   
+        ); 
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null){
+            String path = selectedFile.getPath();
+            controleur.getConteneur1().changementImage(path);
+        }
+        else 
+            System.out.println("Aucun fichier sélectionné");
     }
 
 }

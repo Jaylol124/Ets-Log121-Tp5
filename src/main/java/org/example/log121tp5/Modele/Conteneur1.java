@@ -12,9 +12,8 @@ public class Conteneur1 extends Subject{
         return imageView;
     }
 
-    public void changementImage()
-    {
-        cont.setImage("/images/blackrizz.png");
+    public void changementImage(String image) {
+        cont.setImage(image);
         notifyObservers();
     }
 

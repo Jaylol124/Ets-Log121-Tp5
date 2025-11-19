@@ -33,21 +33,24 @@ public class ConteneurModele extends StackPane {
         getChildren().add(imageView);
     }
 
+    //changer l'image avec le path
     public void setImage(String resourcePath) {
         Image img = new Image(getClass().getResource(resourcePath).toExternalForm());
         imageView.setImage(img);
     }
-
+    //changer l'image avec l'url du fichier
     public void setImageDepuisUrlFichier(String Url) {
         Image img = new Image(Url);
         imageView.setImage(img);
     }
-
+    //getteur de l'imageview
     public ImageView getImageView() {
         return imageView;
     }
 
+    //setteur de l'imageview
     public void setImage(Image image) {
         imageView.setImage(image);
+
     }
 }
