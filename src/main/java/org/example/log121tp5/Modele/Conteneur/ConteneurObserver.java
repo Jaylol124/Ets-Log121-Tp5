@@ -11,8 +11,6 @@ public class ConteneurObserver implements Observer {
     public void update(Subject subject) {
         if(subject instanceof ConteneurSubject)
         {
-            //cont.setImage(((Conteneur1) subject).getImageView());
-            //cont.setImage("/images/blackrizz.png");
             cont.setImage(((ConteneurSubject) subject).getImageView().getImage());
         }
     }
