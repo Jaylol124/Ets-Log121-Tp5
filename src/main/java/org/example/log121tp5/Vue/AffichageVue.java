@@ -30,10 +30,13 @@ public class AffichageVue extends BorderPane {
 
         conteneurGlobal.getChildren().addAll(cont1, cont2, cont3);
 
+
         StackPane center = new StackPane(conteneurGlobal);
         center.setPadding(Insets.EMPTY);
         StackPane.setAlignment(conteneurGlobal, Pos.CENTER);
         setCenter(center);
+
+
 
         //largeur 1/3 de StackPane
         cont1.prefWidthProperty().bind(center.widthProperty().divide(conteneurGlobal.getChildren().size()));
