@@ -6,14 +6,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
+/*
+ * 
+ */
 public class ConteneurModele extends StackPane {
     private ImageView imageView = new ImageView();
 
     public ConteneurModele(String couleur) {
         setStyle(
                 "-fx-background-color: rgba(255,255,255,0.35);" +
-                        "-fx-border-color: " + couleur + ";" +
-                        "-fx-border-width: 3;"
+                "-fx-border-color: " + couleur + ";" +
+                "-fx-border-width: 3;"
 
         );
 
@@ -51,6 +54,5 @@ public class ConteneurModele extends StackPane {
     //setteur de l'imageview
     public void setImage(Image image) {
         imageView.setImage(image);
-
     }
 }

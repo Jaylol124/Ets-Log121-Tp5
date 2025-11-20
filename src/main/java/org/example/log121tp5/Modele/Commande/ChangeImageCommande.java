@@ -3,11 +3,13 @@ package org.example.log121tp5.Modele.Commande;
 import org.example.log121tp5.Controleur.Controleur;
 import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 
-import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import java.io.File;
 
-
+/*
+ * Classe qui permet de changer l'image de fond
+ * @autor guim
+ */
 public class ChangeImageCommande implements Commande {
     private Controleur controleur;
     private FileChooser fileChooser;
@@ -26,7 +28,6 @@ public class ChangeImageCommande implements Commande {
         File selectedFile = fileChooser.showOpenDialog(null);
 
         ConteneurSubject conteneurSubject = controleur.getConteneur();
-        
 
         if (selectedFile != null){
             String path = selectedFile.getPath();
@@ -35,5 +36,4 @@ public class ChangeImageCommande implements Commande {
         else 
             System.out.println("Aucun fichier sélectionné");
     }
-
 }

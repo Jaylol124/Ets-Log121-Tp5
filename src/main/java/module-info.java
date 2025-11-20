@@ -7,4 +7,6 @@ module org.example.log121tp5 {
     exports org.example.log121tp5.Modele;
     exports org.example.log121tp5.Vue;
     exports org.example.log121tp5.Modele.Conteneur;
+    exports org.example.log121tp5.Modele.Commande;
+
 }

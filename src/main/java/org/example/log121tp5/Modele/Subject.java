@@ -1,6 +1,6 @@
 package org.example.log121tp5.Modele;
 /**
- * Inspirer des notes de cours << Le patron observateur >>
+ * Inspiré des notes de cours << Le patron observateur >>
  */
 
 import java.util.LinkedList;

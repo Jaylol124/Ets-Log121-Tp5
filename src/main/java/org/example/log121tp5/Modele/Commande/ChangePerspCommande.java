@@ -9,6 +9,7 @@ public class ChangePerspCommande implements Commande {
     }
     @Override
     public void execute() {
+        
     }
 
 }

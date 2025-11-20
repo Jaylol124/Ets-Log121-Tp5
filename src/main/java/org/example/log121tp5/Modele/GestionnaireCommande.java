@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.example.log121tp5.Modele.Commande.Commande;
 
-
 // gestionnaire de commande pour stocker les commandes executees
 public class GestionnaireCommande {
     private static  GestionnaireCommande instance;

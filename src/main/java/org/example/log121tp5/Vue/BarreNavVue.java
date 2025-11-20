@@ -38,22 +38,29 @@ public class BarreNavVue extends MenuBar{
     private void bindMenuItems() {
         // Ajout des items au menu Fichier
         this.fichierMenu.getItems().addAll(
-            creerItemMenu("Sauvegarder Perpective", e -> System.out.println("Sauvegarder Perpectives")),
-            creerItemMenu("Changer Perpective", e -> System.out.println("Ouvrir un fichier")),
+            creerItemMenu("Sauvegarder Perspective", e -> 
+                controleur.setOnClickListenerSave()
+            ),
+            creerItemMenu("Changer Perspective", e ->
+                controleur.setOnClickListenerChangePersp()
+            ),
             new SeparatorMenuItem(),
-            creerItemMenu("Changer Image", e -> {
-                System.out.println("Changer l'image affichee");
-                controleur.setOnClickListenerChangerImage();
-            }),
+            creerItemMenu("Changer Image", e -> 
+                controleur.setOnClickListenerChangerImage()
+            ),
             new SeparatorMenuItem(),
             creerItemMenu("Quitter", e -> System.exit(0))
         );
 
         // Ajout des items au menu Edition
         this.editionMenu.getItems().addAll(
-            creerItemMenu("Défaire", e -> System.out.println("Défaire la derniere action")),
+            creerItemMenu("Défaire", e -> 
+                controleur.setOnClickListenerUndo()
+            ),
             new SeparatorMenuItem(),
-            creerItemMenu("Refaire", e -> System.out.println("Refaire la derniere action"))
+            creerItemMenu("Refaire", e -> 
+                controleur.setOnClickListenerRedo()
+            )
         );
 
         // Ajout des items au menu Presse-papier
