@@ -5,7 +5,7 @@ import org.example.log121tp5.Modele.Subject;
 
 public class ConteneurSubject extends Subject {
 
-    ConteneurModele cont = new ConteneurModele("gray");
+    ConteneurModele cont = new ConteneurModele("gray",false);
 
     private ImageView imageView = cont.getImageView();
 

@@ -1,46 +1,60 @@
 package org.example.log121tp5.Modele.Conteneur;
 
 import javafx.beans.binding.Bindings;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class ConteneurModele extends StackPane {
-    private ImageView imageView = new ImageView();
+    private static final double BORDER_WIDTH = 3.0;
 
-    public ConteneurModele(String couleur) {
-        setStyle(
-                "-fx-background-color: rgba(255,255,255,0.35);" +
-                        "-fx-border-color: " + couleur + ";" +
-                        "-fx-border-width: 3;"
-        );
+    private final ImageView imageView = new ImageView();
+    private final StackPane content = new StackPane(); // pane interne qui sera clipé
+    public ConteneurModele(String couleur, boolean estBougeable) {
 
-        // Image centrée
-        setAlignment(Pos.CENTER);
-        setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        setStyle("-fx-background-color: rgba(255,255,255,0.35);");
 
-        // 🔹 CLIP pour empêcher de déborder sur les autres conteneurs
+        //le contour
+        setBorder(new Border(new BorderStroke(
+                Color.web(couleur),
+                BorderStrokeStyle.SOLID,
+                new CornerRadii(0),
+                new BorderWidths(BORDER_WIDTH)
+        )));
+
+        content.setAlignment(Pos.CENTER);
+        content.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+
+        //view qui contient l'image
         Rectangle clip = new Rectangle();
-        clip.widthProperty().bind(widthProperty());
-        clip.heightProperty().bind(heightProperty());
-        setClip(clip);
+        clip.widthProperty().bind(content.widthProperty());
+        clip.heightProperty().bind(content.heightProperty());
+        content.setClip(clip);
 
-        // Image plus belle
+
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
         imageView.setCache(true);
 
-
         imageView.fitWidthProperty().bind(
-                Bindings.min(widthProperty(), heightProperty()).multiply(0.6)
+                Bindings.min(content.widthProperty(), content.heightProperty()).multiply(0.6)
         );
 
-        getChildren().add(imageView);
+        // ajout de l'image
+        content.getChildren().add(imageView);
+        // ajout du conteneur de l'image au conteneur principal
+        getChildren().add(content);
 
-        enableDrag();
-        enableZoom();
+        if(estBougeable)
+        {
+            bougerVerticalHorizontal();
+            zoomer();
+        }
+
     }
 
     public void setImage(String resourcePath) {
@@ -61,39 +75,41 @@ public class ConteneurModele extends StackPane {
         imageView.setImage(image);
     }
 
-    // pour bouger image a modifier
-    public void enableDrag() {
-        final double[] mouseAnchorX = new double[1];
-        final double[] mouseAnchorY = new double[1];
-        final double[] initialTranslateX = new double[1];
-        final double[] initialTranslateY = new double[1];
+    // pour bouger image
+    public void bougerVerticalHorizontal() {
+        double[] posSouriX = new double[1];
+        double[] posSouriY = new double[1];
+        double[] posImgX = new double[1];
+        double[] posImgY = new double[1];
 
         imageView.setOnMousePressed(event -> {
-            mouseAnchorX[0] = event.getSceneX();
-            mouseAnchorY[0] = event.getSceneY();
-            initialTranslateX[0] = imageView.getTranslateX();
-            initialTranslateY[0] = imageView.getTranslateY();
+            posSouriX[0] = event.getSceneX();
+            posSouriY[0] = event.getSceneY();
+
+            posImgX[0] = imageView.getTranslateX();
+            posImgY[0] = imageView.getTranslateY();
         });
 
         imageView.setOnMouseDragged(event -> {
-            double dx = event.getSceneX() - mouseAnchorX[0];
-            double dy = event.getSceneY() - mouseAnchorY[0];
+            double x = event.getSceneX() - posSouriX[0];
+            double y = event.getSceneY() - posSouriY[0];
 
-            imageView.setTranslateX(initialTranslateX[0] + dx);
-            imageView.setTranslateY(initialTranslateY[0] + dy);
+            imageView.setTranslateX(posImgX[0] + x);
+            imageView.setTranslateY(posImgY[0] + y);
         });
     }
 
-    // pour zoomer a modifier
-    private void enableZoom() {
+    // pour zoomer image
+    private void zoomer() {
         setOnScroll(event -> {
-            double zoomFactor = 1.1;
+            double multiplicateurDeZoom = 1.2;
+
             if (event.getDeltaY() < 0) {
-                zoomFactor = 1 / zoomFactor;
+                multiplicateurDeZoom = 1 / multiplicateurDeZoom;
             }
 
-            imageView.setScaleX(imageView.getScaleX() * zoomFactor);
-            imageView.setScaleY(imageView.getScaleY() * zoomFactor);
+            imageView.setScaleX(imageView.getScaleX() * multiplicateurDeZoom);
+            imageView.setScaleY(imageView.getScaleY() * multiplicateurDeZoom);
         });
     }
 }
