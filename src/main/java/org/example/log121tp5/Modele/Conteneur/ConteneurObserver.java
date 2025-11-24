@@ -5,7 +5,7 @@ import org.example.log121tp5.Modele.Subject;
 
 public class ConteneurObserver implements Observer {
 
-    ConteneurModele cont = new ConteneurModele("#1e90ff");
+    ConteneurModele cont = new ConteneurModele("#1e90ff", true);
 
     @Override
     public void update(Subject subject) {
