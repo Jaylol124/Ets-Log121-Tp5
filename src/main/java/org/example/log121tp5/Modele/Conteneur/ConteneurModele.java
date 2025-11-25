@@ -103,7 +103,7 @@ public class ConteneurModele extends StackPane {
     }
 
     // pour zoomer image
-    private void zoomer() {
+    public void zoomer() {
         setOnScroll(event -> {
             double multiplicateurDeZoom = 1.2;
 
