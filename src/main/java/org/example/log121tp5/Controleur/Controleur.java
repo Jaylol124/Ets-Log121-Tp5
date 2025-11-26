@@ -9,7 +9,7 @@ import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
 import org.example.log121tp5.Modele.Commande.Commande;
 import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 import org.example.log121tp5.Modele.Conteneur.ConteneurObserver;
-import org.example.log121tp5.Modele.Sauvegarde.SauvegardePerspective;
+//import org.example.log121tp5.Modele.Sauvegarde.SauvegardePerspective;
 import org.example.log121tp5.Vue.AffichageVue;
 
 import java.io.FileNotFoundException;

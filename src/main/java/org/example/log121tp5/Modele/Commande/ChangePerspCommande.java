@@ -24,7 +24,7 @@ public class ChangePerspCommande implements Commande {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Changer les perspectives");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Perspective", "*.ser")
+                new FileChooser.ExtensionFilter("Perspective", "*.Perspective")
         );
         File nomFichier = fileChooser.showOpenDialog(null);
 
@@ -38,6 +38,10 @@ public class ChangePerspCommande implements Commande {
                 ObjectInputStream in = new ObjectInputStream(fileIn);
 
                 cm1 = (ConteneurModele) in.readObject();
+                //System.out.println(cm1.getPosXActuelle());
+                controleur.getConteneurObserver1().getCont().setPosActuelle(cm1.getPosXActuelle(),cm1.getPosYActuelle());
+                controleur.getConteneurObserver1().getCont().setZoomActuelle(cm1.getZoomPosX(),cm1.getZoomPosY());
+                //System.out.println(cm1.getPosYActuelle());
                 in.close();
                 fileIn.close();
             } catch (FileNotFoundException e) {

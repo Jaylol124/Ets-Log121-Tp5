@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import org.example.log121tp5.Controleur.Controleur;
 import org.example.log121tp5.Modele.Conteneur.ConteneurModele;
-import org.example.log121tp5.Modele.Sauvegarde.SauvegardePerspective;
+//import org.example.log121tp5.Modele.Sauvegarde.SauvegardePerspective;
 //import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 
 import javax.imageio.ImageIO;
@@ -28,15 +28,6 @@ public class SavePerspCommande implements Commande{
     }
 
 
-
-
-
-
-
-
-
-
-
     public SavePerspCommande(Controleur controleur) {
         this.controleur = controleur;
     }
@@ -44,13 +35,13 @@ public class SavePerspCommande implements Commande{
     @Override
     public void execute()  {
 
-        ConteneurModele cm = controleur.getConteneurModele();
-        cm.positionActuelle();
+        ConteneurModele cm = controleur.getConteneurObserver1().getCont();
+        //cm.positionActuelle();
 
         fileChooser = new FileChooser();
         fileChooser.setTitle("Sauvegarder les perspectives");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Perspective", "*.ser")
+                new FileChooser.ExtensionFilter("Perspective", "*.Perspective")
         );
         File nomFichier = fileChooser.showSaveDialog(null);
 

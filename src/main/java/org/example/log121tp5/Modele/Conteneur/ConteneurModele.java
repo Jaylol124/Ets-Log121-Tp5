@@ -12,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.Serializable;
 
-public class ConteneurModele extends StackPane implements java.io.Serializable {
+public class ConteneurModele extends StackPane implements Serializable {
 
 
 
@@ -140,9 +140,17 @@ public class ConteneurModele extends StackPane implements java.io.Serializable {
 
             imageView.setTranslateX(posImgX[0] + x);
             imageView.setTranslateY(posImgY[0] + y);
+
+            posXActuelle = imageView.getTranslateX();
+            posYActuelle = imageView.getTranslateY();
         });
 
-        positionActuelle();
+        //positionActuelle();
+
+
+
+//        System.out.println(posXActuelle);
+//        System.out.println('\n' + posYActuelle);
 
 
     }
@@ -159,12 +167,24 @@ public class ConteneurModele extends StackPane implements java.io.Serializable {
             imageView.setScaleX(imageView.getScaleX() * multiplicateurDeZoom);
             imageView.setScaleY(imageView.getScaleY() * multiplicateurDeZoom);
 
-            positionActuelle();
+            //positionActuelle();
+            zoomPosX = imageView.getScaleX();
+            zoomPosY = imageView.getScaleY();
         });
     }
 
     public Double getPositionImageX() {
         return (posXActuelle + posYActuelle);
 
+    }
+
+    public void setPosActuelle(double posX, double posY ) {
+        imageView.setTranslateX(posX);
+        imageView.setTranslateY(posY);
+    }
+
+    public void setZoomActuelle(double zoomX,double zoomY) {
+        imageView.setScaleX(zoomX);
+        imageView.setScaleY(zoomY);
     }
 }
