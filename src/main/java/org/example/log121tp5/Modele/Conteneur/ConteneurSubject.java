@@ -16,8 +16,12 @@ public class ConteneurSubject extends Subject {
     }
 
     public void changementImage(String cheminImage){
+        // remettre ca plus tard
         cont.setImageDepuisUrlFichier(cheminImage);
+        //cont.setImage("/images/blackrizz.png");
+
         notifyObservers();
+        cont.setZoomActuelle();
     }
 
     public ConteneurModele getCont() {

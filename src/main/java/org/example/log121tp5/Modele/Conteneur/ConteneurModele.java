@@ -1,6 +1,7 @@
 package org.example.log121tp5.Modele.Conteneur;
 
 import javafx.beans.binding.Bindings;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -9,9 +10,23 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class ConteneurModele extends StackPane {
-    private final ImageView imageView = new ImageView();
-    private final StackPane content = new StackPane(); // pane interne qui sera clipé
+import java.io.Serializable;
+
+public class ConteneurModele extends StackPane implements Serializable {
+
+
+
+    private transient final ImageView imageView = new ImageView();
+
+//    private double posXActuelle = (imageView.getLayoutX() + imageView.getTranslateX());
+//    private double posYActuelle = (imageView.getLayoutY() + imageView.getTranslateY());
+    private double posXActuelle =0;
+    private double posYActuelle = 0;
+    private double zoomPosX = 1.0;
+    private double zoomPosY = 1.0;
+
+
+    private transient final StackPane content = new StackPane(); // pane interne qui sera clipé
     public ConteneurModele(String couleur, boolean estBougeable) {
 
         setStyle("-fx-background-color: rgba(255,255,255,0.35);");
@@ -55,6 +70,30 @@ public class ConteneurModele extends StackPane {
 
     }
 
+    public void positionActuelle() {
+        Bounds b = imageView.localToParent(imageView.getBoundsInLocal());
+        posXActuelle = b.getMinX();
+        posYActuelle = b.getMinY();
+        zoomPosX = imageView.getScaleX();
+        zoomPosY = imageView.getScaleY();
+    }
+
+    public double getPosXActuelle() {
+        return posXActuelle;
+    }
+
+    public double getPosYActuelle() {
+        return posYActuelle;
+    }
+
+    public double getZoomPosX() {
+        return zoomPosX;
+    }
+
+    public double getZoomPosY() {
+        return zoomPosY;
+    }
+
     //changer l'image avec le path
     public void setImage(String resourcePath) {
         Image img = new Image(getClass().getResource(resourcePath).toExternalForm());
@@ -89,6 +128,8 @@ public class ConteneurModele extends StackPane {
 
             posImgX[0] = imageView.getTranslateX();
             posImgY[0] = imageView.getTranslateY();
+
+
         });
 
         imageView.setOnMouseDragged(event -> {
@@ -97,11 +138,23 @@ public class ConteneurModele extends StackPane {
 
             imageView.setTranslateX(posImgX[0] + x);
             imageView.setTranslateY(posImgY[0] + y);
+
+            posXActuelle = imageView.getTranslateX();
+            posYActuelle = imageView.getTranslateY();
         });
+
+        //positionActuelle();
+
+
+
+//        System.out.println(posXActuelle);
+//        System.out.println('\n' + posYActuelle);
+
+
     }
 
     // pour zoomer image
-    public void zoomer() {
+    private void zoomer() {
         setOnScroll(event -> {
             double multiplicateurDeZoom = 1.2;
 
@@ -111,6 +164,30 @@ public class ConteneurModele extends StackPane {
 
             imageView.setScaleX(imageView.getScaleX() * multiplicateurDeZoom);
             imageView.setScaleY(imageView.getScaleY() * multiplicateurDeZoom);
+
+            //positionActuelle();
+            zoomPosX = imageView.getScaleX();
+            zoomPosY = imageView.getScaleY();
         });
+    }
+
+    public Double getPositionImageX() {
+        return (posXActuelle + posYActuelle);
+
+    }
+
+    public void setPosActuelle(double posX, double posY ) {
+        imageView.setTranslateX(posX);
+        imageView.setTranslateY(posY);
+    }
+
+    public void setZoomActuelle(double zoomX,double zoomY) {
+        imageView.setScaleX(zoomX);
+        imageView.setScaleY(zoomY);
+    }
+    public void setZoomActuelle() {
+        imageView.setScaleX(imageView.getScaleX() +0.5);
+        imageView.setScaleY(imageView.getScaleX() + 0.5);
+
     }
 }

@@ -1,6 +1,7 @@
 package org.example.log121tp5;
 
 import org.example.log121tp5.Controleur.Controleur;
+import org.example.log121tp5.Modele.Conteneur.ConteneurModele;
 import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 import org.example.log121tp5.Modele.Conteneur.ConteneurObserver;
 import org.example.log121tp5.Vue.AffichageVue;
@@ -35,10 +36,17 @@ public class App extends Application {
         conteneurSubject.attach(conteneurObserver1);
         conteneurSubject.attach(conteneurObserver2);
         ///
+
+        ConteneurModele cm = new ConteneurModele("blue", true);
+        controleur.setConteneurModele(cm); // Give it to controller
+
+
         AffichageVue affichageVue = new AffichageVue(controleur);
         controleur.setAffichageVue(affichageVue);
 
         /////
+
+
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -47,7 +55,7 @@ public class App extends Application {
         grid.setPadding(new Insets(25, 25, 25, 25));
         grid.setStyle("--fx-background-color: #812323ff;");
         
-    
+        grid.add(cm,0,0);
         stage.setTitle("Image avec Perpectives");
 
         Scene scene = new Scene(affichageVue, 800, 400);

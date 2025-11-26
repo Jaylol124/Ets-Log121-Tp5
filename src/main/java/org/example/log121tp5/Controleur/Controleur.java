@@ -1,11 +1,18 @@
 package org.example.log121tp5.Controleur;
 
+
+import org.example.log121tp5.Modele.Commande.ChangePerspCommande;
+import org.example.log121tp5.Modele.Commande.SavePerspCommande;
+import org.example.log121tp5.Modele.Conteneur.ConteneurModele;
 import org.example.log121tp5.Modele.GestionnaireCommande;
 import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
 import org.example.log121tp5.Modele.Commande.Commande;
 import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 import org.example.log121tp5.Modele.Conteneur.ConteneurObserver;
+//import org.example.log121tp5.Modele.Sauvegarde.SauvegardePerspective;
 import org.example.log121tp5.Vue.AffichageVue;
+
+import java.io.FileNotFoundException;
 
 public class Controleur {
 
@@ -17,6 +24,8 @@ public class Controleur {
     private ConteneurObserver conteneurObserver1;
     private ConteneurObserver conteneurObserver2;
 
+    private ConteneurModele conteneurModele;
+
     public AffichageVue getAffichageVue() {
         return affichageVue;
     }
@@ -25,8 +34,22 @@ public class Controleur {
         this.affichageVue = affichageVue;
     }
 
-    public void setOnClickListenerChangerImage(){
+
+
+
+
+    public void setOnClickListenerChangerImage()  {
         Commande commande = new ChangeImageCommande(this);
+        gestionnaireCommande.commandeExecute(commande);
+    }
+
+    public void setOnClickListenerSauvegardePersp()  {
+        Commande commande = new SavePerspCommande(this);
+        gestionnaireCommande.commandeExecute(commande);
+    }
+
+    public void setOnClickListenerChangePersp()  {
+        Commande commande = new ChangePerspCommande(this);
         gestionnaireCommande.commandeExecute(commande);
     }
 
@@ -60,5 +83,13 @@ public class Controleur {
 
     public void setConteneurObserver2(ConteneurObserver conteneurObserver2) {
         this.conteneurObserver2 = conteneurObserver2;
+    }
+
+    public ConteneurModele getConteneurModele() {
+        return conteneurModele;
+    }
+
+    public void setConteneurModele(ConteneurModele conteneurModele) {
+        this.conteneurModele = conteneurModele;
     }
 }
