@@ -4,7 +4,6 @@ import org.example.log121tp5.Controleur.Controleur;
 import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 import org.example.log121tp5.Modele.Conteneur.ConteneurObserver;
 import org.example.log121tp5.Vue.AffichageVue;
-import org.example.log121tp5.Modele.AffichageModele;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -21,8 +20,6 @@ public class App extends Application {
     public void start(Stage stage) {
         
         // Lier le controleur au different module
-        AffichageModele affichageModele = new AffichageModele();
-        controleur.setAffichageModele(affichageModele);
 
         /////
         ConteneurSubject conteneurSubject = new ConteneurSubject();
@@ -40,7 +37,7 @@ public class App extends Application {
         ///
         AffichageVue affichageVue = new AffichageVue(controleur);
         controleur.setAffichageVue(affichageVue);
-        affichageVue.setControleur(controleur);
+
         /////
 
         GridPane grid = new GridPane();

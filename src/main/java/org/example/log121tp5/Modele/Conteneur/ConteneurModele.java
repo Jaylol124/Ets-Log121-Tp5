@@ -10,8 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class ConteneurModele extends StackPane {
-    private static final double BORDER_WIDTH = 3.0;
-
     private final ImageView imageView = new ImageView();
     private final StackPane content = new StackPane(); // pane interne qui sera clipé
     public ConteneurModele(String couleur, boolean estBougeable) {
@@ -23,7 +21,7 @@ public class ConteneurModele extends StackPane {
                 Color.web(couleur),
                 BorderStrokeStyle.SOLID,
                 new CornerRadii(0),
-                new BorderWidths(BORDER_WIDTH)
+                new BorderWidths(3)
         )));
 
         content.setAlignment(Pos.CENTER);

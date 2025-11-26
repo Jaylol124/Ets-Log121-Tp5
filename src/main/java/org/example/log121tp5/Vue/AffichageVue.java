@@ -8,13 +8,6 @@ import org.example.log121tp5.Modele.Conteneur.ConteneurModele;
 
 public class AffichageVue extends BorderPane {
 
-    private Controleur controleur;
-
-
-    public void setControleur(Controleur controleur) {
-        this.controleur = controleur;
-    }
-
     public AffichageVue(Controleur controleur) {
         // on met la nav bar toute en haut
         setTop(new BarreNavVue(controleur));

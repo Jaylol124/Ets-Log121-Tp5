@@ -1,6 +1,5 @@
 package org.example.log121tp5.Controleur;
 
-import org.example.log121tp5.Modele.AffichageModele;
 import org.example.log121tp5.Modele.GestionnaireCommande;
 import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
 import org.example.log121tp5.Modele.Commande.Commande;
@@ -11,7 +10,7 @@ import org.example.log121tp5.Vue.AffichageVue;
 public class Controleur {
 
     private AffichageVue affichageVue;
-    private AffichageModele affichageModele;
+
 
     private GestionnaireCommande gestionnaireCommande = GestionnaireCommande.getInstance();
     private ConteneurSubject conteneurSubject;
@@ -24,14 +23,6 @@ public class Controleur {
 
     public void setAffichageVue(AffichageVue affichageVue) {
         this.affichageVue = affichageVue;
-    }
-
-    public AffichageModele getAffichageModele() {
-        return affichageModele;
-    }
-
-    public void setAffichageModele(AffichageModele affichageModele) {
-        this.affichageModele = affichageModele;
     }
 
     public void setOnClickListenerChangerImage(){
