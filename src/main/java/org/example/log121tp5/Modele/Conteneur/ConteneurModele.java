@@ -185,4 +185,9 @@ public class ConteneurModele extends StackPane implements Serializable {
         imageView.setScaleX(zoomX);
         imageView.setScaleY(zoomY);
     }
+    public void setZoomActuelle() {
+        imageView.setScaleX(imageView.getScaleX() +0.5);
+        imageView.setScaleY(imageView.getScaleX() + 0.5);
+
+    }
 }
