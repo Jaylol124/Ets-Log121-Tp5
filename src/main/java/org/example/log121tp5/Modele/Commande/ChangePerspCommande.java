@@ -17,7 +17,6 @@ public class ChangePerspCommande implements Commande {
     @Override
     public void execute() {
 
-        ConteneurModele cm = controleur.getConteneurModele();
         ConteneurModele cm1 = null;
         ConteneurModele cm2 = null;
 
