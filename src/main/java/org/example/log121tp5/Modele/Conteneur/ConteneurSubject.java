@@ -19,6 +19,7 @@ public class ConteneurSubject extends Subject {
         //cont.setImage("/images/blackrizz.png");
 
         notifyObservers();
+        cont.setZoomActuelle();
     }
 
     public ConteneurModele getCont() {
