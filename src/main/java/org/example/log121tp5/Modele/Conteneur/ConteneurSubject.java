@@ -1,7 +1,9 @@
 package org.example.log121tp5.Modele.Conteneur;
 
 import javafx.scene.image.ImageView;
-import org.example.log121tp5.Modele.Subject;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class ConteneurSubject extends Subject {
 
@@ -21,4 +23,6 @@ public class ConteneurSubject extends Subject {
     public ConteneurModele getCont() {
         return cont;
     }
+
+
 }

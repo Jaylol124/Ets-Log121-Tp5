@@ -1,4 +1,5 @@
-package org.example.log121tp5.Modele;
+package org.example.log121tp5.Modele.Conteneur;
+
 /**
  * Inspirer des notes de cours << Le patron observateur >>
  */
