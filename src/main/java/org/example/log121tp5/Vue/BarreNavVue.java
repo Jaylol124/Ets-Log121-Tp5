@@ -38,8 +38,14 @@ public class BarreNavVue extends MenuBar{
     private void bindMenuItems() {
         // Ajout des items au menu Fichier
         this.fichierMenu.getItems().addAll(
-            creerItemMenu("Sauvegarder Perpective", e -> System.out.println("Sauvegarder Perpectives")),
-            creerItemMenu("Changer Perpective", e -> System.out.println("Ouvrir un fichier")),
+            creerItemMenu("Sauvegarder Perpective", e -> {
+                System.out.println("Sauvegarder Perpectives");
+                controleur.setOnClickListenerSauvegardePersp();
+            }),
+            creerItemMenu("Changer Perpective", e -> {
+                System.out.println("Ouvrir un fichier");
+                controleur.setOnClickListenerChangePersp();
+            }),
             new SeparatorMenuItem(),
             creerItemMenu("Changer Image", e -> {
                 System.out.println("Changer l'image affichee");

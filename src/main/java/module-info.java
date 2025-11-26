@@ -1,6 +1,9 @@
 module org.example.log121tp5 {
     requires transitive javafx.controls;
     requires transitive javafx.graphics;
+    requires java.desktop;
+    //requires org.example.log121tp5;
+    //requires org.example.log121tp5;
 
     exports org.example.log121tp5;
     exports org.example.log121tp5.Controleur;
