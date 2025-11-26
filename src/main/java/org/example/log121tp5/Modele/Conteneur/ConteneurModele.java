@@ -16,8 +16,6 @@ public class ConteneurModele extends StackPane implements Serializable {
 
 
 
-    private transient static final double BORDER_WIDTH = 3.0;
-
     private transient final ImageView imageView = new ImageView();
 
 //    private double posXActuelle = (imageView.getLayoutX() + imageView.getTranslateX());
@@ -38,7 +36,7 @@ public class ConteneurModele extends StackPane implements Serializable {
                 Color.web(couleur),
                 BorderStrokeStyle.SOLID,
                 new CornerRadii(0),
-                new BorderWidths(BORDER_WIDTH)
+                new BorderWidths(3)
         )));
 
         content.setAlignment(Pos.CENTER);

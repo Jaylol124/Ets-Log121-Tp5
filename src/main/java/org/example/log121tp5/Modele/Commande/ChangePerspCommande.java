@@ -19,6 +19,7 @@ public class ChangePerspCommande implements Commande {
 
         ConteneurModele cm = controleur.getConteneurModele();
         ConteneurModele cm1 = null;
+        ConteneurModele cm2 = null;
 
 
         fileChooser = new FileChooser();
@@ -38,9 +39,12 @@ public class ChangePerspCommande implements Commande {
                 ObjectInputStream in = new ObjectInputStream(fileIn);
 
                 cm1 = (ConteneurModele) in.readObject();
+                cm2 = (ConteneurModele) in.readObject();
                 //System.out.println(cm1.getPosXActuelle());
                 controleur.getConteneurObserver1().getCont().setPosActuelle(cm1.getPosXActuelle(),cm1.getPosYActuelle());
                 controleur.getConteneurObserver1().getCont().setZoomActuelle(cm1.getZoomPosX(),cm1.getZoomPosY());
+                controleur.getConteneurObserver2().getCont().setPosActuelle(cm2.getPosXActuelle(),cm2.getPosYActuelle());
+                controleur.getConteneurObserver2().getCont().setPosActuelle(cm2.getZoomPosX(), cm2.getZoomPosY());
                 //System.out.println(cm1.getPosYActuelle());
                 in.close();
                 fileIn.close();

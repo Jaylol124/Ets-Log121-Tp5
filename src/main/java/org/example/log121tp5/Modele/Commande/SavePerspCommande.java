@@ -35,6 +35,7 @@ public class SavePerspCommande implements Commande{
     @Override
     public void execute()  {
 
+        ConteneurModele cm2 = controleur.getConteneurObserver2().getCont();
         ConteneurModele cm = controleur.getConteneurObserver1().getCont();
         //cm.positionActuelle();
 
@@ -56,6 +57,7 @@ public class SavePerspCommande implements Commande{
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
 
                 out.writeObject(cm);
+                out.writeObject(cm2);
                 out.close();
                 fileOut.close();
             } catch (FileNotFoundException e) {
