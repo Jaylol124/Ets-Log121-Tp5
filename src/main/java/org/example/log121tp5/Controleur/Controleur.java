@@ -9,10 +9,8 @@ import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
 import org.example.log121tp5.Modele.Commande.Commande;
 import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 import org.example.log121tp5.Modele.Conteneur.ConteneurObserver;
-//import org.example.log121tp5.Modele.Sauvegarde.SauvegardePerspective;
 import org.example.log121tp5.Vue.AffichageVue;
 
-import java.io.FileNotFoundException;
 
 public class Controleur {
 
@@ -40,21 +38,6 @@ public class Controleur {
 
     public void setAffichageModele(AffichageModele affichageModele) {
         this.affichageModele = affichageModele;
-    }
-
-    public void setOnClickListenerChangerImage()  {
-        Commande commande = new ChangeImageCommande(this);
-        gestionnaireCommande.commandeExecute(commande);
-    }
-
-    public void setOnClickListenerSauvegardePersp()  {
-        Commande commande = new SavePerspCommande(this);
-        gestionnaireCommande.commandeExecute(commande);
-    }
-
-    public void setOnClickListenerChangePersp()  {
-        Commande commande = new ChangePerspCommande(this);
-        gestionnaireCommande.commandeExecute(commande);
     }
 
     public ConteneurSubject getConteneur() {

@@ -2,27 +2,24 @@ package org.example.log121tp5.Modele.Conteneur;
 
 import javafx.scene.image.ImageView;
 import org.example.log121tp5.Modele.Subject;
+import org.example.log121tp5.Vue.ConteneurVue;
 
 public class ConteneurSubject extends Subject {
 
-    ConteneurModele cont = new ConteneurModele("gray",false);
+    ConteneurVue conteneur = new ConteneurVue("gray",false);
 
-    private ImageView imageView = cont.getImageView();
+    private ImageView imageView = conteneur.getImageView();
 
     public ImageView getImageView() {
         return imageView;
     }
 
     public void changementImage(String cheminImage){
-        // remettre ca plus tard
-        cont.setImageDepuisUrlFichier(cheminImage);
-        //cont.setImage("/images/blackrizz.png");
+        conteneur.setImageDepuisUrlFichier(cheminImage);
 
         notifyObservers();
-        cont.setZoomActuelle();
+        conteneur.setZoomActuelle();
     }
 
-    public ConteneurModele getCont() {
-        return cont;
-    }
+    public ConteneurVue getCont() {return conteneur;}
 }

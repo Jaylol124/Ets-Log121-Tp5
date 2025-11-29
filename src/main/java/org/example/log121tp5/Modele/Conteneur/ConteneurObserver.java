@@ -2,10 +2,11 @@ package org.example.log121tp5.Modele.Conteneur;
 
 import org.example.log121tp5.Modele.Observer;
 import org.example.log121tp5.Modele.Subject;
+import org.example.log121tp5.Vue.ConteneurVue;
 
 public class ConteneurObserver implements Observer {
 
-    ConteneurModele cont = new ConteneurModele("#1e90ff", true);
+    ConteneurVue cont = new ConteneurVue("#1e90ff", true);
 
     @Override
     public void update(Subject subject) {
@@ -13,8 +14,5 @@ public class ConteneurObserver implements Observer {
             cont.setImage(((ConteneurSubject) subject).getImageView().getImage());
         }
     }
-    public ConteneurModele getCont() {
-        return cont;
-    }
-
+    public ConteneurVue getCont() {return cont;}
 }

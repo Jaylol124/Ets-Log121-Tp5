@@ -1,11 +1,10 @@
 package org.example.log121tp5;
 
-import org.example.log121tp5.Controleur.Controleur;
-import org.example.log121tp5.Modele.Conteneur.ConteneurModele;
+import org.example.log121tp5.Controleur.ControleurCommandes;
 import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 import org.example.log121tp5.Modele.Conteneur.ConteneurObserver;
 import org.example.log121tp5.Vue.AffichageVue;
-import org.example.log121tp5.Modele.AffichageModele;
+import org.example.log121tp5.Vue.ConteneurVue;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -17,39 +16,22 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    private Controleur controleur = new Controleur();
+    private ControleurCommandes controleurCommandes;
     @Override
     public void start(Stage stage) {
         
-        // Lier le controleur au different module
-        AffichageModele affichageModele = new AffichageModele();
-        controleur.setAffichageModele(affichageModele);
+        ConteneurVue cv = new ConteneurVue("blue", true);
 
+        controleurCommandes = new ControleurCommandes(
+            cv,
+            new ConteneurSubject(),
+            new ConteneurObserver(),
+            new ConteneurObserver()
+        );
+    
+        AffichageVue affichageVue = new AffichageVue(controleurCommandes);
+        controleurCommandes.setAffichageVue(affichageVue);
         /////
-        ConteneurSubject conteneurSubject = new ConteneurSubject();
-        controleur.setConteneur(conteneurSubject);
-
-        ConteneurObserver conteneurObserver1 = new ConteneurObserver();
-        controleur.setConteneurObserver1(conteneurObserver1);
-
-        ConteneurObserver conteneurObserver2 = new ConteneurObserver();
-        controleur.setConteneurObserver2(conteneurObserver2);
-
-        // pour patron observer
-        conteneurSubject.attach(conteneurObserver1);
-        conteneurSubject.attach(conteneurObserver2);
-        ///
-
-        ConteneurModele cm = new ConteneurModele("blue", true);
-        controleur.setConteneurModele(cm); // Give it to controller
-
-
-        AffichageVue affichageVue = new AffichageVue(controleur);
-        controleur.setAffichageVue(affichageVue);
-        affichageVue.setControleur(controleur);
-        /////
-
-
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -58,7 +40,7 @@ public class App extends Application {
         grid.setPadding(new Insets(25, 25, 25, 25));
         grid.setStyle("--fx-background-color: #812323ff;");
         
-        grid.add(cm,0,0);
+        grid.add(cv,0,0);
         stage.setTitle("Image avec Perpectives");
 
         Scene scene = new Scene(affichageVue, 800, 400);

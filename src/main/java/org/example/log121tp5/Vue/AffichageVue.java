@@ -3,41 +3,28 @@ package org.example.log121tp5.Vue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
-import org.example.log121tp5.Controleur.Controleur;
-import org.example.log121tp5.Modele.Conteneur.ConteneurModele;
+import org.example.log121tp5.Controleur.ControleurCommandes;
 
 public class AffichageVue extends BorderPane {
 
-    private Controleur controleur;
-
-
-    public void setControleur(Controleur controleur) {
-        this.controleur = controleur;
-    }
-
-    public AffichageVue(Controleur controleur) {
+    public AffichageVue(ControleurCommandes controleurCommandes) {
         // on met la nav bar toute en haut
-        setTop(new BarreNavVue(controleur));
+        setTop(new BarreNavVue(controleurCommandes));
 
         HBox conteneurGlobal = new HBox();
         conteneurGlobal.setAlignment(Pos.CENTER);
         conteneurGlobal.setSpacing(0);
         conteneurGlobal.setPadding(Insets.EMPTY);
 
-        ConteneurModele cont1 = controleur.getConteneur().getCont();
-        ConteneurModele cont2 = controleur.getConteneurObserver1().getCont();
-        ConteneurModele cont3 = controleur.getConteneurObserver2().getCont();
-
-
+        ConteneurVue cont1 = controleurCommandes.getConteneurSubject().getCont();
+        ConteneurVue cont2 = controleurCommandes.getConteneurObserver1().getCont();
+        ConteneurVue cont3 = controleurCommandes.getConteneurObserver2().getCont();
         conteneurGlobal.getChildren().addAll(cont1, cont2, cont3);
-
 
         StackPane center = new StackPane(conteneurGlobal);
         center.setPadding(Insets.EMPTY);
         StackPane.setAlignment(conteneurGlobal, Pos.CENTER);
         setCenter(center);
-
-
 
         //largeur 1/3 de StackPane
         cont1.prefWidthProperty().bind(center.widthProperty().divide(3));

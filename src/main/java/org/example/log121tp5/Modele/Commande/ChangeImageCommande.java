@@ -1,39 +1,18 @@
 package org.example.log121tp5.Modele.Commande;
 
-import org.example.log121tp5.Controleur.Controleur;
 import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
 
-import javafx.scene.image.Image;
-import javafx.stage.FileChooser;
-import java.io.File;
-
-
 public class ChangeImageCommande implements Commande {
-    private Controleur controleur;
-    private FileChooser fileChooser;
+     private final ConteneurSubject sujet;
+    private final String imageUri;
 
-    public ChangeImageCommande(Controleur controleur) {
-        this.controleur = controleur;
+    public ChangeImageCommande(ConteneurSubject sujet, String imageUri) {
+        this.sujet    = sujet;
+        this.imageUri = imageUri;
     }
 
     @Override
     public void execute() {
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("Choisir une image");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.bmp", "*.gif")
-        ); 
-        File selectedFile = fileChooser.showOpenDialog(null);
-
-        ConteneurSubject conteneurSubject = controleur.getConteneur();
-        
-
-        if (selectedFile != null){
-            String path = selectedFile.getPath();
-            conteneurSubject.changementImage(path);
-        }
-        else 
-            System.out.println("Aucun fichier sélectionné");
+        sujet.changementImage(imageUri);
     }
-
 }

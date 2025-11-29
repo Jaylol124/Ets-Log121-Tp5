@@ -2,7 +2,6 @@ package org.example.log121tp5.Modele.Conteneur;
 
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Bounds;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,16 +13,12 @@ import java.io.Serializable;
 
 public class ConteneurModele extends StackPane implements Serializable {
 
-
-
     private transient final ImageView imageView = new ImageView();
 
-//    private double posXActuelle = (imageView.getLayoutX() + imageView.getTranslateX());
-//    private double posYActuelle = (imageView.getLayoutY() + imageView.getTranslateY());
-    private double posXActuelle =0;
-    private double posYActuelle = 0;
-    private double zoomPosX = 1.0;
-    private double zoomPosY = 1.0;
+    private double posXActuelle = 0d;
+    private double posYActuelle = 0d;
+    private double zoomPosX     = 1d;
+    private double zoomPosY     = 1d;
 
 
     private transient final StackPane content = new StackPane(); // pane interne qui sera clipé
@@ -62,12 +57,10 @@ public class ConteneurModele extends StackPane implements Serializable {
         // ajout du conteneur de l'image au conteneur principal
         getChildren().add(content);
 
-        if(estBougeable)
-        {
+        if(estBougeable){
             bougerVerticalHorizontal();
             zoomer();
         }
-
     }
 
     public void positionActuelle() {
@@ -142,15 +135,6 @@ public class ConteneurModele extends StackPane implements Serializable {
             posXActuelle = imageView.getTranslateX();
             posYActuelle = imageView.getTranslateY();
         });
-
-        //positionActuelle();
-
-
-
-//        System.out.println(posXActuelle);
-//        System.out.println('\n' + posYActuelle);
-
-
     }
 
     // pour zoomer image
