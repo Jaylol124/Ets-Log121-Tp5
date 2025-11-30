@@ -34,12 +34,12 @@ public class ConteneurSubject implements Subject {
     }
 
     @Override
-    public void addObserver(Observer o) {
+    public void attach(Observer o) {
         getObservers().add(o);
     }
 
     @Override
-    public void removeObserver(Observer o) {
+    public void detach(Observer o) {
         getObservers().remove(o);
     }
 

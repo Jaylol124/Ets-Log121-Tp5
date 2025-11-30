@@ -24,8 +24,8 @@ public class AffichageVue extends BorderPane {
         controleurCommandes.setConteneurs(conteneurSubject, conteneurObserver1, conteneurObserver2);
 
         // on attache les observers au subject
-        conteneurSubject.addObserver(conteneurObserver1);
-        conteneurSubject.addObserver(conteneurObserver2);
+        conteneurSubject.attach(conteneurObserver1);
+        conteneurSubject.attach(conteneurObserver2);
 
         // initialiser les interactions (deplacer/zoom)
         controleurCommandes.deplacerImageCommande(new ConteneurObserver[]{conteneurObserver1, conteneurObserver2});
