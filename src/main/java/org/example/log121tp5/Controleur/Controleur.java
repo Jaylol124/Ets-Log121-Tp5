@@ -19,6 +19,7 @@ public class Controleur {
     private final GestionnaireCommande gestionnaireCommande = GestionnaireCommande.getInstance();
 
     private ConteneurSubject conteneurSubject;
+    
     private ConteneurObserver conteneurObserver1;
     private ConteneurObserver conteneurObserver2;
 

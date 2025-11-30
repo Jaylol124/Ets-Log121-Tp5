@@ -13,17 +13,17 @@ public class ConteneurObserver extends ConteneurVue implements Observer {
         this.controleur = controleur;
     }
 
-    public void initialiserInteractions(ConteneurObserver autre) {
-        deplacerImage(autre);
-        zoomerImage(autre);
+    public void initialiserInteractions(ConteneurObserver ConteneurObserver) {
+        deplacerImage(ConteneurObserver);
+        zoomerImage(ConteneurObserver);
     }
 
-    public void deplacerImage(ConteneurObserver autre) {
-        controleur.deplacerImageCommande(this, autre);
+    public void deplacerImage(ConteneurObserver ConteneurObserver) {
+        controleur.deplacerImageCommande(this, ConteneurObserver);
     }
 
-    public void zoomerImage(ConteneurObserver autre) {
-        setOnScroll(event -> controleur.zoomerImageCommande(this, autre, event));
+    public void zoomerImage(ConteneurObserver ConteneurObserver) {
+        setOnScroll(event -> controleur.zoomerImageCommande(this, ConteneurObserver, event));
     }
 
     @Override
