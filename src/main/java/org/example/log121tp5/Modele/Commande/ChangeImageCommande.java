@@ -1,6 +1,6 @@
 package org.example.log121tp5.Modele.Commande;
 
-import org.example.log121tp5.Modele.Conteneur.ConteneurSubject;
+import org.example.log121tp5.Vue.ConteneurSubject;
 
 public class ChangeImageCommande implements Commande {
      private final ConteneurSubject sujet;

@@ -1,45 +1,42 @@
 package org.example.log121tp5.Modele.Commande;
 
-
-import javafx.stage.FileChooser;
-import org.example.log121tp5.Controleur.Controleur;
-import org.example.log121tp5.Controleur.ControleurCommandes;
-import org.example.log121tp5.Modele.Conteneur.ConteneurModele;
+import org.example.log121tp5.Vue.ConteneurObserver;
 import org.example.log121tp5.Vue.ConteneurVue;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class SavePerspCommande implements Commande{
-    private transient ControleurCommandes controleurCommandes;
-    private transient FileChooser fileChooser;
+
+    private final String uri;
+
+    private final ConteneurObserver conteneurObserver1;
+    private final ConteneurObserver conteneurObserver2;
+
+    public SavePerspCommande(String uri,
+                             ConteneurObserver conteneurObserver1,
+                             ConteneurObserver conteneurObserver2) {
+        this.uri = uri;
+        this.conteneurObserver1 = conteneurObserver1;
+        this.conteneurObserver2 = conteneurObserver2;
+    }
 
     @Override
-    public void execute()  {
+    public void execute(){
+        if (uri == null) return;
 
-        ConteneurVue cm1 = controleurCommandes.getConteneurObserver2().getCont();
-        ConteneurVue cm2 = controleurCommandes.getConteneurObserver1().getCont();
+        ConteneurVue.ConteneurState state1 = conteneurObserver1.saveState();
+        ConteneurVue.ConteneurState state2 = conteneurObserver2.saveState();
 
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("Sauvegarder les perspectives");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Perspective", "*.Perspective")
-        );
-        File nomFichier = fileChooser.showSaveDialog(null);
-
-        if (nomFichier != null) {
-            try {
-                FileOutputStream fileOut = new FileOutputStream( nomFichier);
-                ObjectOutputStream out = new ObjectOutputStream(fileOut);
-
-                out.writeObject(cm1);
-                out.writeObject(cm2);
-                out.close();
-                fileOut.close();
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        try (FileOutputStream fileOut = new FileOutputStream(uri);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut)){
+            
+            out.writeObject(state1);
+            out.writeObject(state2);    
+        } 
+        catch (FileNotFoundException e) {throw new RuntimeException(e);}
+        catch (IOException e)           {throw new RuntimeException(e);}
     }
 }

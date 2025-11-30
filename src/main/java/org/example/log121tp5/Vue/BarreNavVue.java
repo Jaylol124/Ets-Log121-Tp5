@@ -4,8 +4,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.FileChooser;
 
-import org.example.log121tp5.Controleur.ControleurCommandes;
-import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
+import java.io.File;
+
+import org.example.log121tp5.Controleur.Controleur;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,11 +20,14 @@ public class BarreNavVue extends MenuBar{
     private Menu fichierMenu;
     private Menu editionMenu;
     private Menu pressePapier;
-    private ControleurCommandes controleurCommandes;
 
-    public BarreNavVue(ControleurCommandes controleurCommandes) {
+    private Controleur controleurCommandes;
+
+
+    public BarreNavVue(Controleur controleurCommandes) {
         
         this.controleurCommandes = controleurCommandes;
+
         this.setWidth(getLayoutX());
 
         this.fichierMenu  = new Menu("Fichier");
@@ -43,20 +47,30 @@ public class BarreNavVue extends MenuBar{
 
             // --- SAUVEGARDER PERSPECTIVE ---
             creerItemMenu("Sauvegarder Perpective", e -> {
-                System.out.println("Sauvegarder Perpectives");
+                String uri = getFileFromFileChooser(
+                    "Sauvegarder Perspectives",
+                    "Perspective",
+                    new String[]{"*.Perspective"});
+                controleurCommandes.setOnClickListenerSauvegardePersp(uri);
             }),
 
             // --- CHANGER PERSPECTIVE ---
             creerItemMenu("Changer Perpective", e -> {
-                System.out.println("Ouvrir un fichier");
+                String uri = getFileFromFileChooser(
+                    "Ouvrir Perspectives",
+                    "Perspective",
+                    new String[]{"*.Perspective"});
+                controleurCommandes.setOnClickListenerChangePersp(uri);
             }),
             new SeparatorMenuItem(),
 
             // --- CHANGER IMAGE ---
             creerItemMenu("Changer Image", e -> {
-                String uri = getFileFromFileChooser();
-                new ChangeImageCommande(controleurCommandes.getConteneurSubject(), uri).execute();
-                System.out.println("Changer l'image affichee");
+                String uri = getFileFromFileChooser(
+                    "Choisir Image",
+                    "Image Files",
+                    new String[]{"*.png", "*.jpg", "*.jpeg"});
+                controleurCommandes.setOnClickListenerChangerImage(uri);
             }),
             new SeparatorMenuItem(),
 
@@ -68,11 +82,11 @@ public class BarreNavVue extends MenuBar{
         this.editionMenu.getItems().addAll(
 
             // --- DEFAIRE ---
-            creerItemMenu("Défaire", e -> System.out.println("Défaire la derniere action")),
+            creerItemMenu("Défaire", e -> controleurCommandes.setOnClickListenerUndo()),
             new SeparatorMenuItem(),
 
             // --- REFAIRE ---
-            creerItemMenu("Refaire", e -> System.out.println("Refaire la derniere action"))
+            creerItemMenu("Refaire", e -> controleurCommandes.setOnClickListenerRedo())
         );
 
         // Ajout des items au menu Presse-papier
@@ -88,14 +102,19 @@ public class BarreNavVue extends MenuBar{
      * et retourner le fichier selectionne
      * @return Le fichier selectionne ou null si aucun fichier n'a ete selectionne
     */
-    public String getFileFromFileChooser() {
+    public String getFileFromFileChooser(String titre, String fileType, String[] filter) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choisir une image");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-        ); 
-        return fileChooser.showOpenDialog(null).getPath().toString();
-    }
+        fileChooser.setTitle(titre);
+        fileChooser.getExtensionFilters().add(
+            new FileChooser.ExtensionFilter(fileType, filter)
+    );
+
+    File file = (titre.equals("Sauvegarder Perspectives")) ?
+                 fileChooser.showSaveDialog(null) : 
+                 fileChooser.showOpenDialog(null);
+
+    return (file == null) ? null : file.getAbsolutePath();
+}
 
     /*
      *  Methode utilitaire pour creer un item de menu avec une action associee

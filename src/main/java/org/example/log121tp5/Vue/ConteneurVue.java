@@ -1,7 +1,6 @@
 package org.example.log121tp5.Vue;
 
 import javafx.beans.binding.Bindings;
-import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,27 +12,37 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import org.example.log121tp5.Modele.Memento;
 
-import org.example.log121tp5.Modele.GestionnaireCommande;
-import org.example.log121tp5.Modele.Commande.Commande;
-import org.example.log121tp5.Modele.Commande.DeplacerImageCommande;
-import org.example.log121tp5.Modele.Commande.ZoomCommande;
+import java.io.Serializable;
 
 public class ConteneurVue extends StackPane{
-    private transient final ImageView imageView = new ImageView();
-    private transient final StackPane content = new StackPane(); 
 
-    private GestionnaireCommande gestionnaireCommande = GestionnaireCommande.getInstance();
+    public static final class ConteneurState implements Memento, Serializable {
+        private final double posX;
+        private final double posY;
+        private final double zoomX;
+        private final double zoomY;
 
-    private double posXActuelle = 0d;
-    private double posYActuelle = 0d;
-    private double zoomPosX     = 1d;
-    private double zoomPosY     = 1d;
-    public ConteneurVue(String couleur, boolean estBougeable) {
+        public ConteneurState(double posX, double posY, double zoomX, double zoomY) {
+            this.posX = posX;
+            this.posY = posY;
+            this.zoomX = zoomX;
+            this.zoomY = zoomY;
+        }
 
+        public double getPosX() { return posX; }
+        public double getPosY() { return posY; }
+        public double getZoomX() { return zoomX; }
+        public double getZoomY() { return zoomY; }
+    }
+
+    private final StackPane content = new StackPane();
+    protected final ImageView imageView = new ImageView();
+
+    public ConteneurVue(String couleur) {
         setStyle("-fx-background-color: rgba(255,255,255,0.35);");
 
-        //le contour
         setBorder(new Border(new BorderStroke(
                 Color.web(couleur),
                 BorderStrokeStyle.SOLID,
@@ -44,12 +53,10 @@ public class ConteneurVue extends StackPane{
         content.setAlignment(Pos.CENTER);
         content.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
-        //view qui contient l'image
         Rectangle clip = new Rectangle();
         clip.widthProperty().bind(content.widthProperty());
         clip.heightProperty().bind(content.heightProperty());
         content.setClip(clip);
-
 
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
@@ -59,83 +66,62 @@ public class ConteneurVue extends StackPane{
                 Bindings.min(content.widthProperty(), content.heightProperty()).multiply(0.6)
         );
 
-        // ajout de l'image
         content.getChildren().add(imageView);
-        // ajout du conteneur de l'image au conteneur principal
         getChildren().add(content);
+    }
 
-        if(estBougeable){
-            deplacerImage();
-            zoomerImage();
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public String getCheminImage() {
+        if (imageView.getImage() == null) return null;
+        return imageView.getImage().getUrl();
+    }
+
+    public void setImageDepuisUrlFichier(String urlFichier) {
+        if (urlFichier == null) return;
+        if (urlFichier.contains("file:")) {
+            urlFichier = urlFichier.replace("file:", "");
         }
-    }
-    public void positionActuelle() {
-        Bounds b = imageView.localToParent(imageView.getBoundsInLocal());
-        posXActuelle = b.getMinX();
-        posYActuelle = b.getMinY();
-        zoomPosX = imageView.getScaleX();
-        zoomPosY = imageView.getScaleY();
+
+        Image image = new Image("file:" + urlFichier);
+        imageView.setImage(image);
     }
 
-    // --- METHODES DE DEPLACEMENT ---
-
-    public void deplacerImage() {
-        Commande comande = new DeplacerImageCommande(imageView);
-        gestionnaireCommande.commandeExecute(comande);
-    }
-
-    // --- METHODES DE ZOOM ---
-    public void zoomerImage() {
-        setOnScroll(event -> {
-            Commande commande = new ZoomCommande(this, event);
-            gestionnaireCommande.commandeExecute(commande);
-        });
-    }
-
-    public void zoom(Double multiplicateurDeZoom) { 
-        imageView.setScaleX(imageView.getScaleX() * multiplicateurDeZoom);
-        imageView.setScaleY(imageView.getScaleY() * multiplicateurDeZoom);
-        zoomPosX = imageView.getScaleX();
-        zoomPosY = imageView.getScaleY();
-    }
-
-    // GETTERS
-    public double getPosXActuelle() {return posXActuelle;}
-    public double getPosYActuelle() {return posYActuelle;}
-
-    public double getZoomPosX() {return zoomPosX;}
-    public double getZoomPosY() {return zoomPosY;}
-
-    public Double getPositionImageX() { return (posXActuelle + posYActuelle);}
-
-    // SETTERS
-    //changer l'image avec le path
-    public void setImage(String resourcePath) {
-        Image img = new Image(getClass().getResource(resourcePath).toExternalForm());
-        imageView.setImage(img);
-    }
-    //changer l'image avec l'url du fichier
-    public void setImageDepuisUrlFichier(String Url) {
-        Image img = new Image("file:" + Url);
-        imageView.setImage(img);
-    }
-    //getteur de l'imageview
-    public ImageView getImageView() {return imageView;}
-
-    //setteur de l'imageview
-    public void setImage(Image image) {imageView.setImage(image);}
-
-    public void setPosActuelle(double posX, double posY ) {
-        imageView.setTranslateX(posX);
-        imageView.setTranslateY(posY);
+    public void setZoomActuelle() {
+        imageView.setScaleX(imageView.getScaleX() + 0.5);
+        imageView.setScaleY(imageView.getScaleY() + 0.5);
     }
 
     public void setZoomActuelle(double zoomX,double zoomY) {
         imageView.setScaleX(zoomX);
         imageView.setScaleY(zoomY);
     }
-    public void setZoomActuelle() {
-        imageView.setScaleX(imageView.getScaleX() +0.5);
-        imageView.setScaleY(imageView.getScaleX() + 0.5);
+
+    public void setPosActuelle(double posX, double posY ) {
+        imageView.setTranslateX(posX);
+        imageView.setTranslateY(posY);
+    }
+
+    public void zoom(double multiplicateurDeZoom) {
+        imageView.setScaleX(imageView.getScaleX() * multiplicateurDeZoom);
+        imageView.setScaleY(imageView.getScaleY() * multiplicateurDeZoom);
+    }
+
+    public ConteneurState saveState() {
+        return new ConteneurState(
+                imageView.getTranslateX(),
+                imageView.getTranslateY(),
+                imageView.getScaleX(),
+                imageView.getScaleY()
+        );
+    }
+
+    public void restoreState(Memento memento) {
+        if (!(memento instanceof ConteneurState)) return;
+        ConteneurState state = (ConteneurState) memento;
+        setPosActuelle(state.getPosX(), state.getPosY());
+        setZoomActuelle(state.getZoomX(), state.getZoomY());
     }
 }
