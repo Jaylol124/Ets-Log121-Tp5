@@ -1,12 +1,9 @@
 package org.example.log121tp5.Modele;
 
-import java.util.LinkedList;
-import java.util.List;
 
 import org.example.log121tp5.Vue.ConteneurVue;
 
-public class ConteneurSubject implements Subject {
-    private transient List<Observer> listObservers = new LinkedList<>();
+public class ConteneurSubject extends Subject {
     private final ConteneurVue conteneurVue;
     private String cheminImage;
 
@@ -31,29 +28,5 @@ public class ConteneurSubject implements Subject {
 
         notifyObservers();
         conteneurVue.setZoomActuelle();
-    }
-
-    @Override
-    public void attach(Observer o) {
-        getObservers().add(o);
-    }
-
-    @Override
-    public void detach(Observer o) {
-        getObservers().remove(o);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer obv : getObservers()) {
-            obv.update(this);
-        }
-    }
-
-    private List<Observer> getObservers() {
-        if (listObservers == null) {
-            listObservers = new LinkedList<>();
-        }
-        return listObservers;
     }
 }
