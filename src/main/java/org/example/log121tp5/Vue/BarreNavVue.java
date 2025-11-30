@@ -97,10 +97,10 @@ public class BarreNavVue extends MenuBar{
         );
     }
 
-    /*
+    /**
      * Methode utilitaire pour ouvrir un FileChooser 
      * et retourner le fichier selectionne
-     * @return Le fichier selectionne ou null si aucun fichier n'a ete selectionne
+     * @return Le fichier selectionne ou {@code null} si aucun fichier n'a ete selectionne
     */
     public String getFileFromFileChooser(String titre, String fileType, String[] filter) {
         FileChooser fileChooser = new FileChooser();
@@ -116,7 +116,7 @@ public class BarreNavVue extends MenuBar{
     return (file == null) ? null : file.getAbsolutePath();
 }
 
-    /*
+    /**
      *  Methode utilitaire pour creer un item de menu avec une action associee
      *  @param nom Le nom de l'item de menu
      *  @param action L'action a executer lors du clic sur l'item

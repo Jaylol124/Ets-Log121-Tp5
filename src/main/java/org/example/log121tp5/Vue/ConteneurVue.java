@@ -104,11 +104,20 @@ public class ConteneurVue extends StackPane{
         imageView.setTranslateY(posY);
     }
 
+    /**
+     * Applique un zoom avec un multiplicateur.
+     * @param multiplicateurDeZoom
+     */
     public void zoom(double multiplicateurDeZoom) {
         imageView.setScaleX(imageView.getScaleX() * multiplicateurDeZoom);
         imageView.setScaleY(imageView.getScaleY() * multiplicateurDeZoom);
     }
 
+    /**
+     * Sauvegarde l'état actuel du conteneur (zoom, position, etc.) dans un "memento".
+     *
+     * @return l'état courant du conteneur
+     */
     public ConteneurState saveState() {
         return new ConteneurState(
                 imageView.getTranslateX(),
@@ -118,6 +127,11 @@ public class ConteneurVue extends StackPane{
         );
     }
 
+    /**
+     * Remet le conteneur dans un état précédent à partir d'un memento.
+     *
+     * @param memento l'état à restaurer
+     */
     public void restoreState(Memento memento) {
         if (!(memento instanceof ConteneurState)) return;
         ConteneurState state = (ConteneurState) memento;

@@ -41,7 +41,11 @@ public class AffichageVue extends BorderPane {
         conteneurGlobal.setSpacing(0);
         conteneurGlobal.setPadding(Insets.EMPTY);
 
-        conteneurGlobal.getChildren().addAll(conteneurSubject, conteneurObserver1, conteneurObserver2);
+        ConteneurVue conteneurSubjectVue = conteneurSubject.getVue();
+        ConteneurVue conteneurObserverVue1 = conteneurObserver1.getVue();
+        ConteneurVue conteneurObserverVue2 = conteneurObserver2.getVue();
+
+        conteneurGlobal.getChildren().addAll(conteneurSubjectVue, conteneurObserverVue1, conteneurObserverVue2);
 
         StackPane center = new StackPane(conteneurGlobal);
         center.setPadding(Insets.EMPTY);
@@ -49,13 +53,13 @@ public class AffichageVue extends BorderPane {
         setCenter(center);
 
         //largeur 1/3 de StackPane
-        conteneurSubject.prefWidthProperty().bind(center.widthProperty().divide(3));
-        conteneurObserver1.prefWidthProperty().bind(center.widthProperty().divide(3));
-        conteneurObserver2.prefWidthProperty().bind(center.widthProperty().divide(3));
+        conteneurSubjectVue.prefWidthProperty().bind(center.widthProperty().divide(3));
+        conteneurObserverVue1.prefWidthProperty().bind(center.widthProperty().divide(3));
+        conteneurObserverVue2.prefWidthProperty().bind(center.widthProperty().divide(3));
 
         //toute la hauteur
-        conteneurSubject.prefHeightProperty().bind(center.heightProperty());
-        conteneurObserver1.prefHeightProperty().bind(center.heightProperty());
-        conteneurObserver2.prefHeightProperty().bind(center.heightProperty());
+        conteneurSubjectVue.prefHeightProperty().bind(center.heightProperty());
+        conteneurObserverVue1.prefHeightProperty().bind(center.heightProperty());
+        conteneurObserverVue2.prefHeightProperty().bind(center.heightProperty());
     }
 }
