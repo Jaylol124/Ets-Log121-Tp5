@@ -12,25 +12,23 @@ import java.io.*;
 
 public class SavePerspCommande implements Commande{
 
-    private double posX;
-    private double posY;
+
     private transient   Controleur controleur;
     private transient FileChooser fileChooser;
 
 
 
 
-    public SavePerspCommande(double posX, double posY) {
-        this.posX = posX;
-        this.posY = posY;
 
-    }
 
 
     public SavePerspCommande(Controleur controleur) {
         this.controleur = controleur;
     }
 
+
+     // permet de serializer les objects dans un fichier puis les envoyer dans OutPutStream
+    // l'utilisateur peut choisir le nom est l'emplacement du fichier
     @Override
     public void execute()  {
 

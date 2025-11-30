@@ -14,6 +14,9 @@ public class ChangePerspCommande implements Commande {
     public ChangePerspCommande(Controleur controleur) {
         this.controleur = controleur;
     }
+
+    // permet de déserializer l'objet sauvegarder dans le fichier puis l'afficher sur l'écran
+
     @Override
     public void execute() {
 
@@ -44,7 +47,7 @@ public class ChangePerspCommande implements Commande {
                 controleur.getConteneurObserver1().getCont().setZoomActuelle(cm1.getZoomPosX(),cm1.getZoomPosY());
 
                 controleur.getConteneurObserver2().getCont().setPosActuelle(cm2.getPosXActuelle(),cm2.getPosYActuelle());
-                controleur.getConteneurObserver2().getCont().setPosActuelle(cm2.getZoomPosX(), cm2.getZoomPosY());
+                controleur.getConteneurObserver2().getCont().setZoomActuelle(cm2.getZoomPosX(), cm2.getZoomPosY());
                 //System.out.println(cm1.getPosYActuelle());
                 in.close();
                 fileIn.close();

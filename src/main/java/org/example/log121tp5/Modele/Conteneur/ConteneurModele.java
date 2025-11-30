@@ -18,8 +18,7 @@ public class ConteneurModele extends StackPane implements Serializable {
 
     private transient final ImageView imageView = new ImageView();
 
-//    private double posXActuelle = (imageView.getLayoutX() + imageView.getTranslateX());
-//    private double posYActuelle = (imageView.getLayoutY() + imageView.getTranslateY());
+
     private double posXActuelle =0;
     private double posYActuelle = 0;
     private double zoomPosX = 1.0;
@@ -70,26 +69,22 @@ public class ConteneurModele extends StackPane implements Serializable {
 
     }
 
-    public void positionActuelle() {
-        Bounds b = imageView.localToParent(imageView.getBoundsInLocal());
-        posXActuelle = b.getMinX();
-        posYActuelle = b.getMinY();
-        zoomPosX = imageView.getScaleX();
-        zoomPosY = imageView.getScaleY();
-    }
 
+     // getteur du position actuelle du coordonées X
     public double getPosXActuelle() {
         return posXActuelle;
     }
 
+    // getteur du position actuelle du coordonées y
     public double getPosYActuelle() {
         return posYActuelle;
     }
 
+    // getteur du Zoom actuelle du coordonées X
     public double getZoomPosX() {
         return zoomPosX;
     }
-
+    // getteur du Zoom actuelle du coordonées X
     public double getZoomPosY() {
         return zoomPosY;
     }
@@ -114,6 +109,8 @@ public class ConteneurModele extends StackPane implements Serializable {
         imageView.setImage(image);
 
     }
+
+
 
     // pour bouger image
     public void bougerVerticalHorizontal() {
@@ -143,12 +140,12 @@ public class ConteneurModele extends StackPane implements Serializable {
             posYActuelle = imageView.getTranslateY();
         });
 
-        //positionActuelle();
 
 
 
-//        System.out.println(posXActuelle);
-//        System.out.println('\n' + posYActuelle);
+
+
+
 
 
     }
@@ -171,20 +168,20 @@ public class ConteneurModele extends StackPane implements Serializable {
         });
     }
 
-    public Double getPositionImageX() {
-        return (posXActuelle + posYActuelle);
 
-    }
-
+    // setteur du Position actuelle de l'image
+    // permet de mette la position actuelle de
     public void setPosActuelle(double posX, double posY ) {
         imageView.setTranslateX(posX);
         imageView.setTranslateY(posY);
     }
-
+     //  Setteur du zoom actuelle
+     //  permet de mettre le zoom actuelle de l'image après des modification de l'image avec la souris
     public void setZoomActuelle(double zoomX,double zoomY) {
         imageView.setScaleX(zoomX);
         imageView.setScaleY(zoomY);
     }
+    //setteur du ZoomActuelle
     public void setZoomActuelle() {
         imageView.setScaleX(imageView.getScaleX() +0.5);
         imageView.setScaleY(imageView.getScaleX() + 0.5);
