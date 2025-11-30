@@ -1,43 +1,47 @@
 package org.example.log121tp5.Modele.Commande;
 
-import org.example.log121tp5.Vue.ConteneurObserver;
 import org.example.log121tp5.Modele.GestionnaireCommande;
 import org.example.log121tp5.Modele.Memento;
+import org.example.log121tp5.Modele.ConteneurObserver;
 
 public class DeplacerImageCommande implements Commande {
-    private final ConteneurObserver conteneurObserver1,
-                                    conteneurObserver2;
+    private final ConteneurObserver[] conteneurs;
     private final GestionnaireCommande gestionnaireCommande = GestionnaireCommande.getInstance();
 
-    public DeplacerImageCommande(ConteneurObserver conteneurObserver1,
-                                 ConteneurObserver conteneurObserver2) {
-        this.conteneurObserver1 = conteneurObserver1;
-        this.conteneurObserver2 = conteneurObserver2;
+    public DeplacerImageCommande(ConteneurObserver[] conteneurs) {
+        this.conteneurs = conteneurs;
     }
     @Override
     public void execute() {
-        double[] posSouriX = new double[1];
-        double[] posSouriY = new double[1];
-        double[] posImgX = new double[1];
-        double[] posImgY = new double[1];
+        if (conteneurs == null || conteneurs.length == 0) return;
 
-        conteneurObserver1.getImageView().setOnMousePressed(event -> {
-            posSouriX[0] = event.getSceneX();
-            posSouriY[0] = event.getSceneY();
+        for (ConteneurObserver conteneur : conteneurs) {
+            double[] posSouriX = new double[1];
+            double[] posSouriY = new double[1];
+            double[] posImgX = new double[1];
+            double[] posImgY = new double[1];
 
-            posImgX[0] = conteneurObserver1.getImageView().getTranslateX();
-            posImgY[0] = conteneurObserver1.getImageView().getTranslateY();
+            conteneur.getImageView().setOnMousePressed(event -> {
+                posSouriX[0] = event.getSceneX();
+                posSouriY[0] = event.getSceneY();
 
-            gestionnaireCommande.pushState(new Memento[]{conteneurObserver1.saveState(), conteneurObserver2.saveState()});
-        });
+                posImgX[0] = conteneur.getImageView().getTranslateX();
+                posImgY[0] = conteneur.getImageView().getTranslateY();
 
-        conteneurObserver1.getImageView().setOnMouseDragged(event -> {
-            double dx = event.getSceneX() - posSouriX[0];
-            double dy = event.getSceneY() - posSouriY[0];
+                Memento[] snapshot = new Memento[conteneurs.length];
+                for (int i = 0; i < conteneurs.length; i++)
+                    snapshot[i] = conteneurs[i].saveState();
+                
+                gestionnaireCommande.pushState(snapshot);
+            });
 
-            conteneurObserver1.getImageView().setTranslateX(posImgX[0] + dx);
-            conteneurObserver1.getImageView().setTranslateY(posImgY[0] + dy);
-        });
+            conteneur.getImageView().setOnMouseDragged(event -> {
+                double dx = event.getSceneX() - posSouriX[0];
+                double dy = event.getSceneY() - posSouriY[0];
+
+                conteneur.getImageView().setTranslateX(posImgX[0] + dx);
+                conteneur.getImageView().setTranslateY(posImgY[0] + dy);
+            });
+        }
     }
-
 }

@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import org.example.log121tp5.Modele.ConteneurObserver;
 import org.example.log121tp5.Modele.GestionnaireCommande;
 import org.example.log121tp5.Modele.Memento;
-import org.example.log121tp5.Vue.ConteneurObserver;
 import org.example.log121tp5.Vue.ConteneurVue;
 
 public class ChangePerspCommande implements Commande {

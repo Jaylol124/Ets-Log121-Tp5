@@ -1,5 +1,7 @@
 package org.example.log121tp5.Controleur;
 
+import org.example.log121tp5.Modele.ConteneurObserver;
+import org.example.log121tp5.Modele.ConteneurSubject;
 import org.example.log121tp5.Modele.GestionnaireCommande;
 import org.example.log121tp5.Modele.Commande.ChangeImageCommande;
 import org.example.log121tp5.Modele.Commande.ChangePerspCommande;
@@ -9,8 +11,6 @@ import org.example.log121tp5.Modele.Commande.SavePerspCommande;
 import org.example.log121tp5.Modele.Commande.RedoCommande;
 import org.example.log121tp5.Modele.Commande.UndoCommande;
 import org.example.log121tp5.Modele.Commande.ZoomCommande;
-import org.example.log121tp5.Vue.ConteneurObserver;
-import org.example.log121tp5.Vue.ConteneurSubject;
 
 import javafx.scene.input.ScrollEvent;
 
@@ -19,7 +19,7 @@ public class Controleur {
     private final GestionnaireCommande gestionnaireCommande = GestionnaireCommande.getInstance();
 
     private ConteneurSubject conteneurSubject;
-    
+
     private ConteneurObserver conteneurObserver1;
     private ConteneurObserver conteneurObserver2;
 
@@ -66,13 +66,13 @@ public class Controleur {
 
     // --- METHODES DES COMMANDES DEPLACEMENT ET ZOOM ---
 
-    public void deplacerImageCommande(ConteneurObserver cible, ConteneurObserver autre) {
-        Commande comande = new DeplacerImageCommande(cible, autre);
+    public void deplacerImageCommande(ConteneurObserver[] conteneurs) {
+        Commande comande = new DeplacerImageCommande(conteneurs);
         gestionnaireCommande.commandeExecute(comande);
     }
 
-    public void zoomerImageCommande(ConteneurObserver conteneur, ConteneurObserver autre, ScrollEvent event) {
-        Commande commande = new ZoomCommande(conteneur, autre, event);
+    public void zoomerImageCommande(ConteneurObserver cible, ScrollEvent event) {
+        Commande commande = new ZoomCommande(conteneurObserver1, conteneurObserver2, cible, event);
         gestionnaireCommande.commandeExecute(commande);
     }
 }

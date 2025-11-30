@@ -1,6 +1,6 @@
 package org.example.log121tp5.Modele.Commande;
 
-import org.example.log121tp5.Vue.ConteneurObserver;
+import org.example.log121tp5.Modele.ConteneurObserver;
 import org.example.log121tp5.Vue.ConteneurVue;
 
 import java.io.FileNotFoundException;

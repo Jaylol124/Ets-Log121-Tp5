@@ -1,8 +1,7 @@
-package org.example.log121tp5.Vue;
+package org.example.log121tp5.Modele;
 
 import org.example.log121tp5.Controleur.Controleur;
-import org.example.log121tp5.Modele.Observer;
-import org.example.log121tp5.Modele.Subject;
+import org.example.log121tp5.Vue.ConteneurVue;
 
 public class ConteneurObserver extends ConteneurVue implements Observer {
 
@@ -13,17 +12,12 @@ public class ConteneurObserver extends ConteneurVue implements Observer {
         this.controleur = controleur;
     }
 
-    public void initialiserInteractions(ConteneurObserver ConteneurObserver) {
-        deplacerImage(ConteneurObserver);
-        zoomerImage(ConteneurObserver);
+    public void initialiserInteractions() {
+        zoomerImage();
     }
 
-    public void deplacerImage(ConteneurObserver ConteneurObserver) {
-        controleur.deplacerImageCommande(this, ConteneurObserver);
-    }
-
-    public void zoomerImage(ConteneurObserver ConteneurObserver) {
-        setOnScroll(event -> controleur.zoomerImageCommande(this, ConteneurObserver, event));
+    public void zoomerImage() {
+        setOnScroll(event -> controleur.zoomerImageCommande(this, event));
     }
 
     @Override

@@ -5,6 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 
 import org.example.log121tp5.Controleur.Controleur;
+import org.example.log121tp5.Modele.ConteneurObserver;
+import org.example.log121tp5.Modele.ConteneurSubject;
 
 public class AffichageVue extends BorderPane {
 
@@ -25,8 +27,11 @@ public class AffichageVue extends BorderPane {
         conteneurSubject.addObserver(conteneurObserver1);
         conteneurSubject.addObserver(conteneurObserver2);
 
-        conteneurObserver1.initialiserInteractions(conteneurObserver2);
-        conteneurObserver2.initialiserInteractions(conteneurObserver1);
+        // initialiser les interactions (deplacer/zoom)
+        controleurCommandes.deplacerImageCommande(new ConteneurObserver[]{conteneurObserver1, conteneurObserver2});
+
+        conteneurObserver1.initialiserInteractions();
+        conteneurObserver2.initialiserInteractions();
 
         // on met la nav bar toute en haut
         setTop(new BarreNavVue(controleurCommandes));

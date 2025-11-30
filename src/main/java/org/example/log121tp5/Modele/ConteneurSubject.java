@@ -1,10 +1,9 @@
-package org.example.log121tp5.Vue;
+package org.example.log121tp5.Modele;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import org.example.log121tp5.Modele.Observer;
-import org.example.log121tp5.Modele.Subject;    
+import org.example.log121tp5.Vue.ConteneurVue;    
 
 public class ConteneurSubject extends ConteneurVue implements Subject{
     transient List<Observer> listObservers = new LinkedList<>();
