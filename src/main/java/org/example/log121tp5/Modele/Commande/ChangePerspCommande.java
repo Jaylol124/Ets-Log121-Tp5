@@ -31,7 +31,7 @@ public class ChangePerspCommande implements Commande {
         if (uri == null) return;
 
         try (FileInputStream fileIn = new FileInputStream(uri);
-             ObjectInputStream in = new ObjectInputStream(fileIn)){
+             ObjectInputStream in   = new ObjectInputStream(fileIn)){
 
             ConteneurVue.ConteneurState state1 = (ConteneurVue.ConteneurState) in.readObject();
             ConteneurVue.ConteneurState state2 = (ConteneurVue.ConteneurState) in.readObject();
