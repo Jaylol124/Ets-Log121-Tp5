@@ -34,7 +34,9 @@ public class AffichageVue extends BorderPane {
         conteneurObserver2.initialiserInteractions();
 
         // on met la nav bar toute en haut
-        setTop(new BarreNavVue(controleurCommandes));
+        BarreNavVue barreNavVue = new BarreNavVue(controleurCommandes);
+        
+        setTop(barreNavVue);
 
         HBox conteneurGlobal = new HBox();
         conteneurGlobal.setAlignment(Pos.CENTER);
